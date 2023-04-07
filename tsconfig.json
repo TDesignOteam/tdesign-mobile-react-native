@@ -1,0 +1,30 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+   "paths": {
+      "@src/*": ["./src/*"],
+      "tdesign-react-native": ["./src"],
+      "tdesign-react-native/*": ["./src/*"]
+    },
+    "jsx": "react-jsx",
+    "types": [
+      "node",
+      "react",
+      "react-native",
+      "jest"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "node_modules/**/*",
+    "__test__/**/*"
+  ],
+  "include": [
+    "index.js",
+    "src/**/*",
+    "example/**/*",
+    "*.js",
+    "scripts/*"
+  ]
+}

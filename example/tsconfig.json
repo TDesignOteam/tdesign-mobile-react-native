@@ -1,0 +1,23 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["../src/*"],
+      "tdesign-react-native/*": ["../src/*"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "node_modules/**/*"
+  ],
+  "include": [
+    "index.js",
+    "src/**/*",
+    "*.js",
+    "*.esm",
+    "*.mjs",
+    "scripts/**/*",
+    "jest.config.ts"
+  ]
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="/favicon.ico">
+  <title>TDesign</title>
+  <style>
+    /* These styles make the body full-height */
+    html,
+    body {
+      height: 100%;
+    }
+
+    /* These styles disable body scrolling if you are using <ScrollView> */
+    body {
+      overflow: hidden;
+    }
+
+    /* These styles make the root element full-height */
+    #root {
+      display: flex;
+      height: 100%;
+    }
+    
+  </style>
+  <!--[if lte IE 9]>
+  <style>
+    #root {
+      display: none;
+    }
+  </style>
+  <![endif]-->
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+    <h1 style="position: absolute; width: 100%; text-align:center; top: 45%">请使用 IE 10 以及更新版本的浏览器访问，建议使用 <a href="https://www.google.cn/chrome/">Chrome</a></h1>
+  <![endif]-->
+  <td-aegis></td-aegis>
+  <div id="root"></div>
+</body>
+
+</html>
