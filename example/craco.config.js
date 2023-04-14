@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const {
   addBeforeLoader,
-  // addBeforeLoaders,
+  addBeforeLoaders,
   getLoaders,
   // getLoader,
   loaderByName,
@@ -117,14 +117,36 @@ module.exports = {
 
       // 为了可以解析src目录外的文件 添加一个loader
       const { matches } = getLoaders(webpackConfig, loaderByName('babel-loader'));
-      matches[0].loader.include = [matches[0].loader.include, resolveApp('./'), resolveApp('../src')];
-      matches[0].loader.exclude = /node_modules/;
+      addBeforeLoaders(webpackConfig, loaderByName('babel-loader'), {
+        ...matches[0].loader,
+        include: [matches[0].loader.include, resolveApp('./'), resolveApp('../src')],
+        exclude: /@babel(?:\/|\\{1,2})runtime/,
+      });
 
       //   // 默认extensions: ['.web.mjs', '.mjs', '.web.js', '.js', '.web.ts', '.ts', '.web.tsx', '.tsx', '.json', '.web.jsx', '.jsx']
       //   // 当打包环境变量包括ROUTER_EXTENSION，使用ROUTER_EXTENSION定义的结尾的路由配置
       //   if (process.env.ROUTER_EXTENSION) {
       //     webpackConfig.resolve.extensions.unshift(`.${process.env.ROUTER_EXTENSION}.tsx`);
       //   }
+
+      function getFileLoaderRule(rules) {
+        for (const rule of rules) {
+          if ('oneOf' in rule) {
+            const found = getFileLoaderRule(rule.oneOf);
+            if (found) {
+              return found;
+            }
+          } else if (rule.test === undefined && rule.type === 'asset/resource') {
+            return rule;
+          }
+        }
+      }
+      // cjs单独输出 为了解决react navigation 使用nanoid模块导出问题
+      const fileLoaderRule = getFileLoaderRule(webpackConfig.module.rules);
+      if (!fileLoaderRule) {
+        throw new Error('File loader not found');
+      }
+      fileLoaderRule.exclude.push(/\.cjs$/);
 
       return webpackConfig;
     },

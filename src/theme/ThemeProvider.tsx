@@ -14,11 +14,9 @@ type Props = {
 const ThemeProvider = (props: Props) => {
   const { children } = props;
   const [themeName, setThemeName] = useState<ThemeType>('light');
-  console.log('themeName---->>', themeName);
   const theme = useMemo(
     // () => (themeName === 'auto' ? themes[isDayTime() ? 'light' : 'dark'] : themes[themeName]),
     () => {
-      console.log('---->>', themeName);
       return themeName === 'auto' ? light : themes[themeName];
     },
     [themeName],

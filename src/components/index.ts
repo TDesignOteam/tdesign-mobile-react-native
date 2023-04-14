@@ -1,2 +1,2 @@
-export { View, Text } from './Base';
+export { View, Text, ScrollView } from './Base';
 export { Button } from './Button';
