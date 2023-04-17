@@ -3,13 +3,13 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StatusBar } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, useDrawerProgress } from '@react-navigation/drawer';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import { useTheme } from '@src/theme';
 import { Text, ScrollView, View, Button } from '@src/components';
 import ThemeProvider from '@src/theme/ThemeProvider';
 import { SafeAreaProvider, initialWindowMetrics, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { lazy, useCallback } from 'react';
+import { lazy, useCallback, Suspense } from 'react';
 import { ListItem } from './components/ListItem';
 import listConfig from './list-config';
 
@@ -107,28 +107,34 @@ function App(): JSX.Element {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <NavigationContainer>
-            <Stack.Navigator
-              initialRouteName="ExampleList"
-              screenOptions={{
-                headerMode: 'screen',
-                presentation: 'card',
-                cardOverlayEnabled: true,
-                animationEnabled: true,
-              }}
-            >
-              <Stack.Screen options={{ headerShown: false }} name="ExampleList" component={Home} />
-              {listConfig?.map?.((list) => {
-                return list?.children?.map((item) => {
-                  return (
-                    <Stack.Screen
-                      name={item.key}
-                      options={{ headerTitle: item.title }}
-                      component={lazy(() => import('@src/components/Button/_example/index'))}
-                    />
-                  );
-                });
-              })}
-            </Stack.Navigator>
+            <Suspense fallback={<Text>loading...</Text>}>
+              <Stack.Navigator
+                initialRouteName="ExampleList"
+                screenOptions={{
+                  headerMode: 'screen',
+                  presentation: 'card',
+                  cardOverlayEnabled: true,
+                  animationEnabled: true,
+                }}
+              >
+                <Stack.Screen options={{ headerShown: false }} name="ExampleList" component={Home} />
+                {listConfig?.map?.((list) => {
+                  return list?.children?.map((item) => {
+                    return (
+                      <Stack.Screen
+                        name={item.key}
+                        options={{
+                          headerBackTitleVisible: false,
+                          headerTitle: item.title,
+                          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                        }}
+                        component={lazy(() => import('@src/components/Button/_example/index'))}
+                      />
+                    );
+                  });
+                })}
+              </Stack.Navigator>
+            </Suspense>
           </NavigationContainer>
         </SafeAreaProvider>
       </GestureHandlerRootView>
