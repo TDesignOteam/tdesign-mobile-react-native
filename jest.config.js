@@ -35,6 +35,5 @@ module.exports = {
   // react-native-reanimated运行时需要一些配置
   setupFilesAfterEnv: ['./jest-setup.js'],
 
-  // 使用工作线程进行并行化
-  workerThreads: true,
+  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!**/node_modules/**', '!**/vendor/**', '!**/src/_common/**'],
 };

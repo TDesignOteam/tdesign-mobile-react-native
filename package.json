@@ -11,6 +11,7 @@
     "eslint": "eslint --max-warnings 0 --ext js,jsx,ts,tsx --cache",
     "check": "cross-env NODE_ENV=production npm run eslint",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "postinstall": "cd example && npm i && cd ../site && npm i",
     "site:start": "cd site && npm run start",
     "site:dev": "cd site && npm run dev",
