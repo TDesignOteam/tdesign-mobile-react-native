@@ -1,0 +1,13 @@
+/*
+ * @Author: yatessss
+ * @Date: 2023-04-18 15:05:28
+ * @LastEditors: yatessss
+ * @LastEditTime: 2023-04-18 15:05:37
+ * @Description: 用于jest的 tsconfig
+ */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "isolatedModules": false
+  }
+}
