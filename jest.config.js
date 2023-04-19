@@ -37,6 +37,7 @@ module.exports = {
         tsconfig: './tsconfig.test.json',
       },
     ],
+    '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
   },
 
   // 定义了忽略进行 jest 执行的依赖包
