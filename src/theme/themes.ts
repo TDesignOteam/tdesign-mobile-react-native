@@ -1,40 +1,24 @@
-import { ITheme } from './types';
-
-// 通用
-import commonSpacers from './common/spacers';
-import commonDimensions from './common/dimensions';
-import commonFonts from './common/fonts';
+import { ITokens } from './types';
 
 // light
-import lightColors from './light/colors';
-import lightAtom from './light/atom';
+import { lightTokens } from './light/tokens';
+// import lightAtom from './light/atom';
 
 // dark
-import darkColors from './dark/colors';
-import darkAtom from './dark/atom';
+import { darkTokens } from './dark/tokens';
+// import darkAtom from './dark/atom';
 
-export const light: ITheme = {
+export const light: ITokens = {
   name: 'light',
-  colors: lightColors,
-  spacers: commonSpacers,
-  dimensions: commonDimensions,
-  fonts: commonFonts,
-  atom: lightAtom,
+  ...lightTokens,
 };
 
-export const dark: ITheme = {
+export const dark: ITokens = {
   name: 'dark',
-  colors: darkColors,
-  spacers: commonSpacers,
-  dimensions: commonDimensions,
-  fonts: commonFonts,
-  atom: darkAtom,
+  ...darkTokens,
 };
-
-export const auto = undefined;
 
 const themes = {
-  auto,
   light,
   dark,
 } as const;

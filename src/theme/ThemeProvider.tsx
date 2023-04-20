@@ -17,7 +17,7 @@ const ThemeProvider = (props: Props) => {
   const theme = useMemo(
     // () => (themeName === 'auto' ? themes[isDayTime() ? 'light' : 'dark'] : themes[themeName]),
     () => {
-      return themeName === 'auto' ? light : themes[themeName];
+      return themeName === 'light' ? light : themes[themeName];
     },
     [themeName],
   );

@@ -4,4 +4,4 @@ import themes, { ThemeType } from './themes';
 
 export { ThemeProvider, ThemeContext, themes, useTheme };
 export type { ThemeType, ThemeContextProps };
-export type { ITheme, IThemeAtom } from './types';
+export type { ITokens } from './types';
