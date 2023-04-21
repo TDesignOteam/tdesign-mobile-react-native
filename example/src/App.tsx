@@ -11,7 +11,7 @@ import ThemeProvider from '@src/theme/ThemeProvider';
 import { SafeAreaProvider, initialWindowMetrics, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { lazy, useCallback, Suspense } from 'react';
 import { ListItem } from './components/ListItem';
-import listConfig from './list-config';
+import listConfig from './component-list';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -101,6 +101,7 @@ function Home() {
     </Drawer.Navigator>
   );
 }
+
 function App(): JSX.Element {
   return (
     <ThemeProvider>
@@ -115,11 +116,20 @@ function App(): JSX.Element {
                   presentation: 'card',
                   cardOverlayEnabled: true,
                   animationEnabled: true,
+                  cardStyle: { flex: 1 },
                 }}
               >
                 <Stack.Screen options={{ headerShown: false }} name="ExampleList" component={Home} />
                 {listConfig?.map?.((list) => {
                   return list?.children?.map((item) => {
+                    const LazyComponent = lazy(() => import('@src/components/Button/_example/index'));
+                    function component(_props: any) {
+                      return (
+                        <ScrollView>
+                          <LazyComponent {..._props} />
+                        </ScrollView>
+                      );
+                    }
                     return (
                       <Stack.Screen
                         name={item.key}
@@ -128,8 +138,9 @@ function App(): JSX.Element {
                           headerTitle: item.title,
                           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                         }}
-                        component={lazy(() => import('@src/components/Button/_example/index'))}
-                      />
+                      >
+                        {(props) => component(props)}
+                      </Stack.Screen>
                     );
                   });
                 })}
