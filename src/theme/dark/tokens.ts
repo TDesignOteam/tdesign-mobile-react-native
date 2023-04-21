@@ -1,8 +1,10 @@
 import { DarkColors } from './colors';
 import { CommonTokens } from '../common/tokens';
+import { classnames } from './classnames';
 
-export const darkTokens = {
+export const darkTokens: any = {
   ...CommonTokens,
+  classnames,
   colors: {
     white: DarkColors.white,
     brand1: DarkColors.brand1,

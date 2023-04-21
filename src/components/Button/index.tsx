@@ -8,7 +8,7 @@ import Animated, {
   Easing,
   cancelAnimation,
 } from 'react-native-reanimated';
-import { useTheme, ITheme } from '../../theme';
+import { useTheme, ITokens } from '../../theme';
 import { Text, View } from '../Base';
 import { Touchable } from '../Touchable';
 
@@ -69,7 +69,7 @@ export type IButtonProps = PropsWithChildren<{
   loading?: boolean;
 }>;
 
-const createStyles = (theme: ITheme, size?: string, color?: string, variant?: string) => {
+const createStyles = (theme: ITokens, size?: string, color?: string, variant?: string) => {
   let height;
   let font;
   let fontColor;
@@ -79,15 +79,15 @@ const createStyles = (theme: ITheme, size?: string, color?: string, variant?: st
   switch (size) {
     case 'small':
       height = 32;
-      font = theme.atom.text4;
+      font = theme.classnames.text4;
       break;
     case 'medium':
       height = 36;
-      font = theme.atom.text4;
+      font = theme.classnames.text4;
       break;
     case 'large':
       height = 44;
-      font = theme.atom.text3;
+      font = theme.classnames.text3;
       break;
   }
 
@@ -134,7 +134,7 @@ const createStyles = (theme: ITheme, size?: string, color?: string, variant?: st
   return StyleSheet.create({
     container: {
       height,
-      borderRadius: theme.dimensions.borderRadius,
+      borderRadius: theme.radius.default,
       backgroundColor,
       ...border,
     },

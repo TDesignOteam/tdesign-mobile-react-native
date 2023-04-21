@@ -1,6 +1,6 @@
 import * as React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import { useTheme } from '../../theme';
+import { useTheme, ITokens } from '../../theme';
 
 interface WrapperProps<T> {
   className?: string;
@@ -9,25 +9,25 @@ interface WrapperProps<T> {
 }
 
 const CreateWrapperComponent = <P extends object>(Component: React.ComponentType<P>) => {
-  const parseClassName = (className: string, theme: Record<string, any> = {}) => {
-    const atomClassNames = [...Object.keys(theme.atom || {})];
+  const parseClassName = (className: string, theme: ITokens) => {
+    const atomClassNames = [...Object.keys(theme.classnames || {})];
     const colorClassNames = [...Object.keys(theme.colors || {})];
-    const fontClassNames = [...Object.keys(theme.fonts || {})];
+    // const fontClassNames = [...Object.keys(theme.fonts || {})];
     const classnames = className
       ?.split(' ')
       ?.filter(Boolean)
       ?.map((name) => {
         if (atomClassNames.includes(name)) {
-          return theme.atom[name as keyof typeof theme.atom];
+          return theme.classnames[name];
         }
         if (colorClassNames.includes(name)) {
           return { color: theme.colors[name as keyof typeof theme.colors] };
         }
-        if (fontClassNames.includes(name)) {
-          return name.includes('size')
-            ? { fontSize: theme.fonts[name as keyof typeof theme.fonts] }
-            : { lineHeight: theme.fonts[name as keyof typeof theme.fonts] };
-        }
+        // if (fontClassNames.includes(name)) {
+        //   return name.includes('size')
+        //     ? { fontSize: theme.fonts[name as keyof typeof theme.fonts] }
+        //     : { lineHeight: theme.fonts[name as keyof typeof theme.fonts] };
+        // }
 
         console.warn('无效的className:', name);
         return undefined;

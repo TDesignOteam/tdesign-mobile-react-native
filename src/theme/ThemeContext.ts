@@ -1,13 +1,13 @@
 import { useContext, createContext } from 'react';
-import { ITheme } from './types';
+import { ITokens } from './types';
 import { ThemeType, light } from './themes';
 
 export interface ThemeContextProps {
-  theme: ITheme;
+  theme: ITokens;
   themeName: ThemeType;
   setThemeName: any;
 }
-export type { ITheme };
+export type { ITokens };
 
 const themeConfig: ThemeContextProps = {
   theme: light,

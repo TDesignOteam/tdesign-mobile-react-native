@@ -1,7 +1,9 @@
+import { ViewStyle, TextStyle } from 'react-native';
 import { LightColors } from './light/colors';
 import { darkTokens } from './dark/tokens';
 import { lightTokens } from './light/tokens';
 import { CommonTokens } from './common/tokens';
+import { classnames } from './light/classnames';
 
 export type TLightThemeColor = {
   [key in keyof typeof LightColors]: string;
@@ -30,5 +32,8 @@ export interface ITokens {
   };
   spacers: {
     [key in keyof typeof CommonTokens.spacers]: number;
+  };
+  classnames: {
+    [key in keyof typeof classnames]: ViewStyle | TextStyle;
   };
 }
