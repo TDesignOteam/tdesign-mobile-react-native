@@ -58,6 +58,7 @@ class Theme {
       mergeResult.classnames = {
         ...originTheme.classnames,
         ...lightClassNames(mergeResult as ThemeTokensType, commonClassNames(mergeResult as CommonTokensType)),
+        ...customTheme.classnames,
       };
 
       return mergeResult as ThemeType;
