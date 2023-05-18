@@ -104,7 +104,16 @@ function Home() {
 
 function App(): JSX.Element {
   return (
-    <ThemeProvider>
+    <ThemeProvider
+      config={{
+        light: {
+          colors: {
+            fontGray2: 'red',
+          },
+        },
+      }}
+      theme="light"
+    >
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <NavigationContainer>
