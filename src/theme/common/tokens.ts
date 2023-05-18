@@ -87,7 +87,6 @@ export const CommonTokens = {
     spacer140: Spacers.spacer140,
     spacer144: Spacers.spacer144,
     spacer148: Spacers.spacer148,
-    spacer152: Spacers.spacer152,
     spacer156: Spacers.spacer156,
     spacer160: Spacers.spacer160,
     spacer999: Spacers.spacer999,

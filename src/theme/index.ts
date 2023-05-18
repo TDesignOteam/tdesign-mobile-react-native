@@ -1,7 +1,7 @@
 import ThemeContext, { useTheme, ThemeContextProps } from './ThemeContext';
 import ThemeProvider from './ThemeProvider';
-import themes, { ThemeType } from './themes';
+import { themes } from './themes';
 
 export { ThemeProvider, ThemeContext, themes, useTheme };
-export type { ThemeType, ThemeContextProps };
-export type { ITokens } from './types';
+export type { ThemeContextProps };
+export type { ThemeType } from './types';

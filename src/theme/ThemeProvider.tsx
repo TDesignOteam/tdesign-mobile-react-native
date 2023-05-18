@@ -1,28 +1,43 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useReducer } from 'react';
 import ThemeContext from './ThemeContext';
-import themes, { light, ThemeType } from './themes';
+import { ThemeName, themes, ConfigType } from './themes';
 
 type Props = {
+  // 自定义的主题配置
+  config?: ConfigType;
+  // 初始主题
+  theme?: ThemeName;
   children?: JSX.Element;
 };
 
-// const isDayTime = () => {
-//   const hours = new Date().getHours();
-//   return hours > 6 && hours < 20;
-// };
-
 const ThemeProvider = (props: Props) => {
-  const { children } = props;
-  const [themeName, setThemeName] = useState<ThemeType>('light');
-  const theme = useMemo(
-    // () => (themeName === 'auto' ? themes[isDayTime() ? 'light' : 'dark'] : themes[themeName]),
-    () => {
-      return themeName === 'light' ? light : themes[themeName];
-    },
-    [themeName],
-  );
+  const { children, config, theme: initTheme = 'light' } = props;
+  const [themeName, setThemeName] = useState<ThemeName>(initTheme);
+  const [update, forceUpdate] = useReducer(() => ({}), {});
 
-  return <ThemeContext.Provider value={{ theme, themeName, setThemeName }}>{children}</ThemeContext.Provider>;
+  const theme = useMemo(() => {
+    return themes[themeName] ? themes[themeName] : themes.light;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [themeName, update]);
+
+  useEffect(() => {
+    themes.initTheme(config);
+    forceUpdate();
+  }, [config]);
+
+  return (
+    <ThemeContext.Provider
+      value={{
+        theme,
+        themeName,
+        setThemeName: (value) => {
+          return setThemeName(value);
+        },
+      }}
+    >
+      {children}
+    </ThemeContext.Provider>
+  );
 };
 
 export default ThemeProvider;

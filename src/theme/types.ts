@@ -3,7 +3,6 @@ import { LightColors } from './light/colors';
 import { darkTokens } from './dark/tokens';
 import { lightTokens } from './light/tokens';
 import { CommonTokens } from './common/tokens';
-import { classnames } from './light/classnames';
 
 export type TLightThemeColor = {
   [key in keyof typeof LightColors]: string;
@@ -13,27 +12,34 @@ export type TDarkThemeColor = {
   [key in keyof typeof darkTokens]: string;
 };
 
-export interface ITokens {
-  name: string;
-  colors: {
-    [key in keyof typeof lightTokens.colors]: string;
-  };
+export type CommonTokensType = {
   fontSize: {
-    [key in keyof typeof CommonTokens.fontSize]: number;
+    [key in keyof typeof CommonTokens.fontSize]?: number;
   };
   lineHeight: {
-    [key in keyof typeof CommonTokens.lineHeight]: number;
+    [key in keyof typeof CommonTokens.lineHeight]?: number;
   };
   radius: {
-    [key in keyof typeof CommonTokens.radius]: number;
+    [key in keyof typeof CommonTokens.radius]?: number;
   };
   fontWeight: {
-    [key in keyof typeof CommonTokens.fontWeight]: string;
+    [key in keyof typeof CommonTokens.fontWeight]?: TextStyle['fontWeight'];
   };
   spacers: {
-    [key in keyof typeof CommonTokens.spacers]: number;
+    [key in keyof typeof CommonTokens.spacers]?: number;
   };
+};
+
+export type ThemeTokensType = {
+  colors: {
+    [key in keyof typeof lightTokens.colors]?: string;
+  };
+} & CommonTokensType;
+
+export type ThemeType = {
   classnames: {
-    [key in keyof typeof classnames]: ViewStyle | TextStyle;
+    [key: string]: ViewStyle | TextStyle;
   };
-}
+} & ThemeTokensType;
+
+// export type PartailThemeType = Partial<ThemeType>;

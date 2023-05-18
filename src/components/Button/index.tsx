@@ -8,7 +8,7 @@ import Animated, {
   Easing,
   cancelAnimation,
 } from 'react-native-reanimated';
-import { useTheme, ITokens } from '../../theme';
+import { useTheme, ThemeType } from '../../theme';
 import { Text, View } from '../Base';
 import { Touchable } from '../Touchable';
 
@@ -69,7 +69,7 @@ export type IButtonProps = PropsWithChildren<{
   loading?: boolean;
 }>;
 
-const createStyles = (theme: ITokens, size?: string, color?: string, variant?: string) => {
+const createStyles = (theme: ThemeType, size?: string, color?: string, variant?: string) => {
   let height;
   let font;
   let fontColor;

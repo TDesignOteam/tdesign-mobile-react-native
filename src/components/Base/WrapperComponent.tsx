@@ -1,6 +1,6 @@
 import * as React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import { useTheme, ITokens } from '../../theme';
+import { useTheme, ThemeType } from '../../theme';
 
 interface WrapperProps<T> {
   className?: string;
@@ -9,7 +9,7 @@ interface WrapperProps<T> {
 }
 
 const CreateWrapperComponent = <P extends object>(Component: React.ComponentType<P>) => {
-  const parseClassName = (className: string, theme: ITokens) => {
+  const parseClassName = (className: string, theme: ThemeType) => {
     const atomClassNames = [...Object.keys(theme.classnames || {})];
     const colorClassNames = [...Object.keys(theme.colors || {})];
     // const fontClassNames = [...Object.keys(theme.fonts || {})];

@@ -1,30 +1,19 @@
 import { useContext, createContext } from 'react';
-import { ITokens } from './types';
-import { ThemeType, light } from './themes';
+import { ThemeType } from './types';
+import { ThemeName, themes } from './themes';
 
 export interface ThemeContextProps {
-  theme: ITokens;
-  themeName: ThemeType;
-  setThemeName: any;
+  theme: ThemeType;
+  themeName: ThemeName;
+  setThemeName: (value: ThemeName) => void;
 }
-export type { ITokens };
-
-const themeConfig: ThemeContextProps = {
-  theme: light,
-  themeName: 'light',
-  setThemeName: 'aa',
-};
+export type { ThemeType };
 
 export const ThemeContext = createContext<ThemeContextProps>({
-  theme: light,
-  themeName: 'light',
-  setThemeName: 'aa',
+  theme: themes.light,
+  themeName: themes.name,
+  setThemeName: () => {},
 });
-
-export const setThemeConfig = (key: string | number, value: any) => {
-  // @ts-ignore
-  themeConfig[key] = value;
-};
 
 export default ThemeContext;
 
