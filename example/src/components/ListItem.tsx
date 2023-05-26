@@ -1,7 +1,8 @@
 import { View, Text } from '@src/components';
-// import { useTheme } from '@src/theme';
+import { useTheme } from '@src/theme';
 import { ReactNode } from 'react';
 import { TextStyle, TouchableOpacity } from 'react-native';
+import { ChevronRightIcon } from 'tdesign-icons-react-native/src';
 
 interface ListItemProps {
   /**
@@ -52,7 +53,7 @@ const ListItem = (props: ListItemProps) => {
   const { size, label, labelStyle, labelIcon, value, valueStyle, valueLayout, hideBorder, onPressItem, hideArrow } =
     props;
 
-  // const { theme } = useTheme();
+  const { theme } = useTheme();
 
   const onPress = () => {
     onPressItem?.();
@@ -74,8 +75,7 @@ const ListItem = (props: ListItemProps) => {
             </Text>
             {onPressItem && !hideArrow ? (
               <View className="ml8">
-                {/* <ChevronRightIcon color={theme.colors.fontGray2} width={20} height={20} /> */}
-                <Text>{'＞'}</Text>
+                <ChevronRightIcon color={theme.colors.fontGray2} width={20} height={20} />
               </View>
             ) : null}
           </View>

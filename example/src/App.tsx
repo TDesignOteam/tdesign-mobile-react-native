@@ -8,7 +8,7 @@ import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated
 import { ThemeProvider, useTheme } from '@src/theme';
 import { Text, ScrollView, View, Button } from '@src/components';
 import { SafeAreaProvider, initialWindowMetrics, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { lazy, useCallback, Suspense } from 'react';
+import { lazy, useCallback, Suspense, useState, useEffect } from 'react';
 import { ListItem } from './components/ListItem';
 import listConfig from './component-list';
 
@@ -103,22 +103,28 @@ function Home() {
 }
 
 function App(): JSX.Element {
-  return (
-    <ThemeProvider
-      config={{
+  const [themeConfig, setThemeConfig] = useState({});
+
+  // 测试异步加载主题
+  useEffect(() => {
+    setTimeout(() => {
+      setThemeConfig({
         light: {
           colors: {
-            fontGray2: 'red',
+            fontGray2: 'violet',
           },
           classnames: {
             test: {
-              backgroundColor: 'red',
+              backgroundColor: 'violet',
             },
           },
         },
-      }}
-      theme="light"
-    >
+      });
+    }, 5000);
+  }, []);
+
+  return (
+    <ThemeProvider config={themeConfig} theme="light">
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <NavigationContainer>
