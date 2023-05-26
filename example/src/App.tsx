@@ -5,9 +5,8 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, useDrawerProgress } from '@react-navigation/drawer';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated';
-import { useTheme } from '@src/theme';
+import { ThemeProvider, useTheme } from '@src/theme';
 import { Text, ScrollView, View, Button } from '@src/components';
-import ThemeProvider from '@src/theme/ThemeProvider';
 import { SafeAreaProvider, initialWindowMetrics, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { lazy, useCallback, Suspense } from 'react';
 import { ListItem } from './components/ListItem';
@@ -76,6 +75,7 @@ function DrawerMenu(props: any) {
         /> */}
         <View className="mx12">
           <Button
+            loading
             theme="primary"
             content="change theme"
             onPress={() => {
@@ -110,6 +110,11 @@ function App(): JSX.Element {
           colors: {
             fontGray2: 'red',
           },
+          classnames: {
+            test: {
+              backgroundColor: 'red',
+            },
+          },
         },
       }}
       theme="light"
@@ -117,7 +122,13 @@ function App(): JSX.Element {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <NavigationContainer>
-            <Suspense fallback={<Text>loading...</Text>}>
+            <Suspense
+              fallback={
+                <View className="flex1 flexCenter">
+                  <Text>loading...</Text>
+                </View>
+              }
+            >
               <Stack.Navigator
                 initialRouteName="ExampleList"
                 screenOptions={{

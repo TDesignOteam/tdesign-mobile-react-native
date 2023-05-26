@@ -2,6 +2,25 @@
 
 在项目根目录中运行`npm i`安装代码需要对应依赖，再进入对应 package 运行项目
 
+### 目录结构
+
+.
+├── CHANGELOG.md          
+├── DEVELOP_GUIDE.md
+├── README.md
+├── babel.config.js
+├── example               // demo运行目录
+├── jest-setup.js
+├── jest.config.js
+├── node_modules
+├── package-lock.json
+├── package.json
+├── scripts
+├── site                  // 文档站点目录
+├── src                   // 组件库源码
+├── tsconfig.json
+└── tsconfig.test.json
+
 ### 运行命令
 
 
@@ -26,3 +45,5 @@ subject-描述
 1. feat(button): 修改文案
 2. fix: fixbug
 3. refactor: 调整代码结构
+
+### 文档地址

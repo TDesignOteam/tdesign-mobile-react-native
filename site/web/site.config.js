@@ -1,5 +1,5 @@
 /* eslint-disable import/no-relative-packages */
-import baseConfig from '@example/base-config.ts';
+import baseConfig from '@example/component-list.ts';
 
 const componentConfig = baseConfig.map((config) => {
   const result = {
@@ -43,6 +43,18 @@ const siteConfig = {
           // TODO FIX
           component: () => import('@common/docs/mobile/overview.md'),
           // component: () => null,
+        },
+      ],
+    },
+    {
+      title: '全局配置',
+      type: 'config',
+      children: [
+        {
+          title: '主题',
+          name: 'theme',
+          path: '/react-native/theme',
+          component: () => import('tdesign-react-native/theme/theme.md'),
         },
       ],
     },

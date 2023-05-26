@@ -8,6 +8,7 @@ import Animated, {
   Easing,
   cancelAnimation,
 } from 'react-native-reanimated';
+import { LoadingIcon } from 'tdesign-icons-react-native/src';
 import { useTheme, ThemeType } from '../../theme';
 import { Text, View } from '../Base';
 import { Touchable } from '../Touchable';
@@ -200,7 +201,7 @@ export const Button = (props: IButtonProps) => {
   const loadingNode = (
     <View style={_iconStyle}>
       <Animated.View style={animatedStyle}>
-        <Text>loading</Text>
+        <LoadingIcon color={_iconColor} />
       </Animated.View>
     </View>
   );
