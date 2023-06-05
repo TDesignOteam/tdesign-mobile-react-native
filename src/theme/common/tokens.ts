@@ -17,7 +17,7 @@ export const CommonTokens = {
     base: Spacers.spacer22,
     l: Spacers.spacer24,
     xl: Spacers.spacer26,
-    xxl: Spacers.spacer28,
+    xxl: Spacers.spacer30,
     xxxl: Spacers.spacer44,
   },
   radius: {
