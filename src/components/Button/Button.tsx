@@ -19,6 +19,7 @@ const createStyles = (
   size: TDButtonProps['size'] = 'medium',
   theme: TDButtonProps['theme'] = 'default',
   variant: TDButtonProps['variant'] = 'base',
+  shape: TDButtonProps['shape'] = 'round',
 ) => {
   const isBaseVariant = variant === 'base';
   const isTextVariant = variant === 'text';
@@ -39,7 +40,7 @@ const createStyles = (
     default: appTheme.colors.fontGray1,
     primary: isBaseVariant ? appTheme.colors.fontWhite1 : appTheme.colors.brand7,
     danger: isBaseVariant ? appTheme.colors.fontWhite1 : appTheme.colors.error6,
-    warning: isBaseVariant ? appTheme.colors.fontWhite1 : appTheme.colors.warning6,
+    warning: isBaseVariant ? appTheme.colors.fontWhite1 : appTheme.colors.warning5,
     success: isBaseVariant ? appTheme.colors.fontWhite1 : appTheme.colors.success5,
   };
 
@@ -47,14 +48,21 @@ const createStyles = (
     default: appTheme.colors.gray4,
     primary: appTheme.colors.brand7,
     danger: appTheme.colors.error6,
-    warning: appTheme.colors.warning6,
+    warning: appTheme.colors.warning5,
     success: appTheme.colors.success5,
+  };
+
+  const shapeMap = {
+    rectangle: {},
+    square: { width: heightMap[size] },
+    round: { borderRadius: appTheme.radius.default },
+    circle: { borderRadius: appTheme.radius.round },
   };
 
   return StyleSheet.create({
     container: {
       height: heightMap[size],
-      borderRadius: appTheme.radius.default,
+      ...shapeMap[shape],
       backgroundColor: isBaseVariant ? backgroundColorMap[theme] : 'transparent',
       ...(isTextVariant
         ? {}
@@ -76,6 +84,7 @@ export const Button = (props: TDButtonProps) => {
     size,
     theme,
     variant,
+    shape,
     disabled,
     icon,
     style = {},
@@ -93,20 +102,18 @@ export const Button = (props: TDButtonProps) => {
   }));
 
   const styles = useMemo(() => {
-    return createStyles(appTheme, size, theme, variant);
-  }, [appTheme, size, theme, variant]);
+    return createStyles(appTheme, size, theme, variant, shape);
+  }, [appTheme, size, theme, variant, shape]);
 
   const _iconColor = useMemo(() => {
     return textStyle?.color || styles.text.color;
   }, [styles.text.color, textStyle?.color]);
 
   const _iconStyle = useMemo(() => {
-    return [
-      styles.text,
-      iconDirection === 'row' ? { marginRight: appTheme.spacers.spacer8 } : { marginBottom: appTheme.spacers.spacer2 },
-      icon?.props?.style,
-    ];
-  }, [appTheme.spacers.spacer2, appTheme.spacers.spacer8, icon?.props?.style, iconDirection, styles.text]);
+    const iconMargin =
+      iconDirection === 'row' ? { marginRight: appTheme.spacers.spacer8 } : { marginBottom: appTheme.spacers.spacer2 };
+    return [styles.text, content ? iconMargin : {}, icon?.props?.style];
+  }, [appTheme.spacers.spacer2, appTheme.spacers.spacer8, icon?.props?.style, iconDirection, styles.text, content]);
 
   const _icon = useMemo(() => {
     return icon ? cloneElement(icon, { color: _iconColor, ...icon?.props, style: _iconStyle }) : null;
@@ -142,7 +149,7 @@ export const Button = (props: TDButtonProps) => {
         style={[styles.container, containerStyle]}
       >
         {loading ? loadingNode : <>{_icon ? <View>{_icon}</View> : null}</>}
-        <Text style={[styles.text, textStyle]}>{content}</Text>
+        {content === null ? content : <Text style={[styles.text, textStyle]}>{content}</Text>}
       </View>
     </Touchable>
   );
@@ -154,5 +161,6 @@ Button.defaultProps = {
   size: 'medium',
   theme: 'default',
   variant: 'base',
+  shape: 'round',
   iconDirection: 'row',
 };

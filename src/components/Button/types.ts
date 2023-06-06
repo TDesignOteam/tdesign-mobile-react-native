@@ -1,4 +1,4 @@
-import { ReactElement, PropsWithChildren } from 'react';
+import { ReactElement, PropsWithChildren, ReactNode } from 'react';
 import { ViewStyle, TextStyle } from 'react-native';
 import { TDThemeEnum, TDSizeEnum } from '../common';
 
@@ -6,7 +6,7 @@ export type TDButtonProps = PropsWithChildren<{
   /**
    * 按钮内容
    */
-  content?: string;
+  content?: string | ReactNode;
   /**
    * 是否禁用按钮
    * @default false
@@ -30,6 +30,11 @@ export type TDButtonProps = PropsWithChildren<{
    * @default medium
    */
   size?: TDSizeEnum;
+  /**
+   * 组件形状
+   * @default round
+   */
+  shape?: 'rectangle' | 'square' | 'round' | 'circle';
   /**
    * 组件风格，依次为默认色、品牌色、危险色、警告色、成功色
    */
