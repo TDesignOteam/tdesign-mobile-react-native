@@ -2,7 +2,7 @@
  * @Author: yatessss
  * @Date: 2023-03-17 11:20:59
  * @LastEditors: yatessss
- * @LastEditTime: 2023-03-24 15:48:14
+ * @LastEditTime: 2023-06-06 17:33:22
  * @Description: 解析tsx文件 生成对应plugin需要的md格式文件
  */
 
@@ -19,6 +19,16 @@ const prettierRc = require('../../.prettierrc.js');
 
 let tagToMd = {};
 let allowedTag = ['Section', 'CodeSpace'];
+
+function generateUUID() {
+  let d = new Date().getTime();
+  const uuid = 'xxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function (c) {
+    const r = (d + Math.random() * 16) % 16 | 0;
+    d = Math.floor(d / 16);
+    return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+  });
+  return uuid;
+}
 
 function rn2MdPlugin(userOptions = {}) {
   const { include, tagToMd: _tagToMd } = userOptions;
@@ -151,7 +161,7 @@ function genMd(mdPath) {
       if (t.isImportDefaultSpecifier(nodePath) || t.isImportSpecifier(nodePath)) {
         const importPath = nodePath.parent.source.value;
         const name = nodePath?.node?.local?.name || '';
-        if (name && importPath) {
+        if (name && importPath && !/(react|tdsign)/i.test(importPath)) {
           importMap.set(name, {
             type: t.isImportDefaultSpecifier(nodePath) ? 'default' : 'module',
             path: importPath,
@@ -221,10 +231,13 @@ function genMd(mdPath) {
           nodePath.node?.children?.forEach((child) => {
             if (t.isJSXElement(child)) {
               const tag = child.openingElement?.name?.name || '';
+              // 如果是变量或函数
               if (variableCode.has(tag)) {
                 sections[sectionIndex] += `::: demo ${componentName} ${tag}\n:::\n`;
+                return;
               }
 
+              // 如果是import文件
               if (importMap.has(tag)) {
                 const importValue = importMap.get(tag);
                 const _path = path.resolve(importValue.cwd, importValue.path);
@@ -232,13 +245,23 @@ function genMd(mdPath) {
                 const code = getCodeFromOtherFile(_path, tag, importValue.type);
                 variableCode.set(tag, code);
                 sections[sectionIndex] += `::: demo ${componentName} ${tag}\n:::\n`;
+                return;
               }
+
+              // 都不是 就是单纯的jsx结构
+              const code = outputCode(child);
+              const uid = generateUUID();
+              variableCode.set(uid, code.replace(/;\s*$/, ''));
+              sections[sectionIndex] += `::: demo ${componentName} ${uid}\n:::\n`;
+              console.log(code);
             }
           });
         }
       }
     },
   });
+
+  console.log('------->>', sections);
 
   let mdString = '---\n';
   summary.forEach((value, key) => {
