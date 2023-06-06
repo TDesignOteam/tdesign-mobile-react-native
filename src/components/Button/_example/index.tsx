@@ -6,107 +6,105 @@
  * toc: false
  */
 
-import { View, Text, Button } from 'tdesign-react-native/components';
+import { View, Button } from 'tdesign-react-native/components';
 import { Section, CodeSpace, H3, H4, P } from '@src/../example/src/components';
-import { useState } from 'react';
-import Demo4 from './base';
-
-const Demo1 = () => {
-  return (
-    <View className="mb48">
-      <Text className="text3 gray8">风格形式</Text>
-      <Button style={{ marginTop: 10 }} content={'默认'} />
-      <Button style={{ marginTop: 10 }} variant="outline" content={'outline'} />
-      <Button style={{ marginTop: 10 }} variant="text" content={'variant=text'} />
-      <Button style={{ marginTop: 10 }} theme="primary" content={'theme=primary'} />
-      <Button style={{ marginTop: 10 }} theme="primary" variant="outline" content={'variant=outline'} />
-      <Button style={{ marginTop: 10 }} theme="primary" variant="text" content={'variant=text'} />
-      <Button style={{ marginTop: 10 }} theme="danger" content={'theme=danger'} />
-      <Button style={{ marginTop: 10 }} theme="danger" variant="outline" content={'variant=outline'} />
-      <Button style={{ marginTop: 10 }} theme="danger" variant="text" content={'variant=text'} />
-
-      <Text className="text3 gray8 mt12">尺寸</Text>
-      <Button style={{ marginTop: 10 }} theme="primary" content={'默认'} />
-      <Button style={{ marginTop: 10 }} size="small" theme="primary" content={'size=small'} />
-      <Button style={{ marginTop: 10 }} size="large" theme="primary" content={'size=large'} />
-
-      <Text className="text3 gray8 mt12">状态</Text>
-      <Button style={{ marginTop: 10 }} disabled theme="primary" content={'disabled'} />
-      <Button style={{ marginTop: 10 }} disabled size="small" theme="primary" content={'disabled'} />
-      <Button style={{ marginTop: 10 }} disabled size="large" theme="primary" content={'disabled'} />
-
-      <Text className="text3 gray8 mt12">带图标</Text>
-      <Button style={{ marginTop: 10 }} iconDirection="column" theme="primary" variant="text" content={'带图标'} />
-
-      <Text className="text3 gray8 mt12">group</Text>
-      <View className="flexRow">
-        <Button style={{ flex: 1, marginRight: 16 }} theme="primary" content={'主按钮'} />
-        <Button style={{ flex: 1 }} theme="primary" variant="outline" content={'次按钮'} />
-      </View>
-      <View className="flexRow mt12">
-        <Button style={{ flex: 1, marginLeft: 16 }} iconDirection="column" variant="text" content={'关注'} />
-        <Button style={{ flex: 1, marginRight: 16 }} iconDirection="column" variant="text" content={'转化'} />
-        <Button style={{ flex: 2 }} theme="primary" variant="outline" content={'新增约见记录'} />
-      </View>
-    </View>
-  );
-};
-
-const Demo3 = function () {
-  const [count, setCount] = useState(0);
-  return <Button onPress={() => setCount((p) => p + 1)}>{count} </Button>;
-};
-
-function Demo2() {
-  const [count, setCount] = useState(0);
-  return <Button onPress={() => setCount((p) => p + 1)}>{count} </Button>;
-}
+import { UserIcon, SearchIcon } from 'tdesign-icons-react-native/src';
 
 const Demo = () => (
   <>
     <Section>
-      <H3>基础按钮</H3>
+      <H3>1.基础按钮</H3>
       <P>基础类型分为主按钮、次按钮、文字按钮。</P>
+      <H4>主按钮</H4>
+      <P>使用场景：大部分场景都可以使用，例如反馈页、表单页、对话框，一个页面建议最多只出现一个主按钮</P>
       <H4>次按钮</H4>
       <P>
         使用场景：在用户进行的操作为流程中的辅助操作，或者进行不那么重要的交互行为时，选择用次按钮；次要按钮通常和主要按钮一起出现
       </P>
+      <H4>文字按钮</H4>
+      <P>使用场景：它的操作通常和其旁边内容相关，通常出现在标题旁、字段旁、列表最下方</P>
       <CodeSpace>
-        <Demo1 />
+        <View className="flexRow flexWrap gapX12">
+          <Button style={{ flex: 1 }} theme="primary" content={'主按钮'} />
+          <Button style={{ flex: 1 }} theme="primary" variant="outline" content={'次按钮'} />
+          <Button style={{ flex: 1 }} theme="primary" variant="text" content={'文字按钮'} />
+        </View>
       </CodeSpace>
     </Section>
     <Section>
-      <H3>基础按钮2</H3>
-      <P>2基础类型分为主按钮、次按钮、文字按钮。</P>
-      <H4>2次按钮</H4>
-      <P>
-        2使用场景：在用户进行的操作为流程中的辅助操作，或者进行不那么重要的交互行为时，选择用次按钮；次要按钮通常和主要按钮一起出现
-      </P>
+      <H3>2.图标按钮</H3>
+      <P>图标按钮由图标+文字或图标构成。通过图标可增强识别性，以便直观理解。</P>
       <CodeSpace>
-        <Demo2 />
+        <View className="flexRow flexWrap gapX12">
+          <Button style={{ flex: 1 }} theme="primary" icon={<UserIcon />} content={'横向'} />
+          <Button style={{ flex: 1 }} theme="primary" icon={<UserIcon />} content={null} />
+          <Button
+            style={{ flex: 1 }}
+            theme="primary"
+            icon={<UserIcon />}
+            iconDirection="column"
+            variant="text"
+            content={'纵向'}
+          />
+        </View>
       </CodeSpace>
     </Section>
     <Section>
-      <H3>基础按钮3</H3>
-      <P>3基础类型分为主按钮、次按钮、文字按钮。</P>
-      <H4>3次按钮</H4>
-      <P>
-        3使用场景：在用户进行的操作为流程中的辅助操作，或者进行不那么重要的交互行为时，选择用次按钮；次要按钮通常和主要按钮一起出现
-      </P>
+      <H3>3.按钮尺寸</H3>
       <CodeSpace>
-        <Demo3 />
+        <View className="flexRow flexWrap gapX12">
+          <Button style={{ flex: 1 }} size="large" content={'大'} />
+          <Button style={{ flex: 1 }} size="medium" content={'中'} />
+          <Button style={{ flex: 1 }} size="small" content={'小'} />
+        </View>
       </CodeSpace>
     </Section>
     <Section>
-      <H3>基础按钮4</H3>
-      <P>4基础类型分为主按钮、次按钮、文字按钮。</P>
-      <H4>4次按钮</H4>
-      <P>
-        4使用场景：在用户进行的操作为流程中的辅助操作，或者进行不那么重要的交互行为时，选择用次按钮；次要按钮通常和主要按钮一起出现
-      </P>
+      <H3>4.按钮形状</H3>
       <CodeSpace>
-        <Demo4 />
+        <View className="flexRow flexWrap gapX12">
+          <Button style={{ flex: 1 }} theme="primary" shape="round" content={'默认'} />
+          <Button style={{ flex: 1 }} theme="primary" shape="rectangle" content={'rectangle'} />
+          <Button theme="primary" shape="square" icon={<SearchIcon />} content={null} />
+          <Button theme="primary" shape="circle" icon={<SearchIcon />} content={null} />
+        </View>
       </CodeSpace>
+    </Section>
+    <Section>
+      <H3>5.按钮主题</H3>
+      <CodeSpace>
+        <View className="gapY6">
+          <View className="flexRow flexWrap gapX12">
+            <Button style={{ flex: 1 }} theme="primary" content={'主按钮'} />
+            <Button style={{ flex: 1 }} theme="primary" variant="outline" content={'描边按钮'} />
+            <Button style={{ flex: 1 }} theme="primary" variant="text" content={'文字按钮'} />
+          </View>
+          <View className="flexRow flexWrap gapX12">
+            <Button style={{ flex: 1 }} content={'主按钮'} />
+            <Button style={{ flex: 1 }} variant="outline" content={'描边按钮'} />
+            <Button style={{ flex: 1 }} variant="text" content={'文字按钮'} />
+          </View>
+          <View className="flexRow flexWrap gapX12">
+            <Button style={{ flex: 1 }} theme="danger" content={'主按钮'} />
+            <Button style={{ flex: 1 }} theme="danger" variant="outline" content={'描边按钮'} />
+            <Button style={{ flex: 1 }} theme="danger" variant="text" content={'文字按钮'} />
+          </View>
+          <View className="flexRow flexWrap gapX12">
+            <Button style={{ flex: 1 }} theme="warning" content={'主按钮'} />
+            <Button style={{ flex: 1 }} theme="warning" variant="outline" content={'描边按钮'} />
+            <Button style={{ flex: 1 }} theme="warning" variant="text" content={'文字按钮'} />
+          </View>
+          <View className="flexRow flexWrap gapX12">
+            <Button style={{ flex: 1 }} theme="success" content={'主按钮'} />
+            <Button style={{ flex: 1 }} theme="success" variant="outline" content={'描边按钮'} />
+            <Button style={{ flex: 1 }} theme="success" variant="text" content={'文字按钮'} />
+          </View>
+        </View>
+      </CodeSpace>
+    </Section>
+    <Section>
+      <H3>5.按钮状态</H3>
+      <CodeSpace>{Demo2()}</CodeSpace>
     </Section>
   </>
 );

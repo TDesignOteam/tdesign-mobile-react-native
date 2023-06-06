@@ -9,6 +9,7 @@ import { ThemeProvider, useTheme } from '@src/theme';
 import { Text, ScrollView, View, Button } from '@src/components';
 import { SafeAreaProvider, initialWindowMetrics, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { lazy, useCallback, Suspense, useState, useEffect } from 'react';
+import { LinkUnlinkIcon } from 'tdesign-icons-react-native/src';
 import { ListItem } from './components/ListItem';
 import listConfig from './component-list';
 
@@ -23,6 +24,9 @@ function ExampleList() {
     <View className="flex1 bg">
       <StatusBar />
       <ScrollView>
+        <Button theme="primary" icon={<LinkUnlinkIcon />}>
+          哈哈
+        </Button>
         <View className="flex1 bg" style={{ paddingBottom: bottom }}>
           {listConfig?.map?.((list, index) => {
             const endIndex = (list?.children?.length ?? 0) - 1;
@@ -44,8 +48,6 @@ function ExampleList() {
               </View>
             );
           })}
-          {/* <Test /> */}
-          {/* <Demo /> */}
         </View>
       </ScrollView>
     </View>
@@ -111,7 +113,7 @@ function App(): JSX.Element {
       setThemeConfig({
         light: {
           colors: {
-            fontGray2: 'violet',
+            fontGray4: 'violet',
           },
           classnames: {
             test: {
