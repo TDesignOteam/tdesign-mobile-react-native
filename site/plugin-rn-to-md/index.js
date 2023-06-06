@@ -2,7 +2,7 @@
  * @Author: yatessss
  * @Date: 2023-03-17 11:20:59
  * @LastEditors: yatessss
- * @LastEditTime: 2023-06-06 17:33:22
+ * @LastEditTime: 2023-06-06 17:39:10
  * @Description: 解析tsx文件 生成对应plugin需要的md格式文件
  */
 
@@ -253,15 +253,12 @@ function genMd(mdPath) {
               const uid = generateUUID();
               variableCode.set(uid, code.replace(/;\s*$/, ''));
               sections[sectionIndex] += `::: demo ${componentName} ${uid}\n:::\n`;
-              console.log(code);
             }
           });
         }
       }
     },
   });
-
-  console.log('------->>', sections);
 
   let mdString = '---\n';
   summary.forEach((value, key) => {
