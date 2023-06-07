@@ -103,8 +103,13 @@ const Demo = () => (
       </CodeSpace>
     </Section>
     <Section>
-      <H3>5.按钮状态</H3>
-      <CodeSpace>{Demo2()}</CodeSpace>
+      <H3>6.按钮状态</H3>
+      <CodeSpace>
+        <View className="flexRow flexWrap gapX12">
+          <Button style={{ flex: 1 }} theme="primary" loading content={'加载'} />
+          <Button style={{ flex: 1 }} theme="primary" disabled content={'禁用'} />
+        </View>
+      </CodeSpace>
     </Section>
   </>
 );
