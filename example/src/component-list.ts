@@ -3,12 +3,12 @@ export default [
     title: '基础组件',
     children: [
       {
-        title: 'Button 按钮',
-        key: 'button',
+        title: 'Base 基础容器',
+        key: 'Base',
       },
       {
-        title: 'Button-按钮',
-        key: 'Button1',
+        title: 'Button 按钮',
+        key: 'Button',
       },
     ],
   },

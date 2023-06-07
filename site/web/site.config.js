@@ -10,7 +10,7 @@ const componentConfig = baseConfig.map((config) => {
       title: child.title,
       name: child.key,
       path: `/react-native/${child.key}`,
-      component: () => import(`../../src/components/Button/${child.key}.md`),
+      component: () => import(`../../src/components/${child.key}/${child.key}.md`),
     }));
   }
   return result;
