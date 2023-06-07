@@ -3,6 +3,11 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+
+const dotenv = require('dotenv').config({
+  path: path.resolve(__dirname, '../../example/.env'),
+});
+
 // import camelCase from 'camelcase';
 
 // import testCoverage from '../test-coverage';
@@ -201,7 +206,9 @@ function customRender({ source, file, md }) {
   }
 
   // 移动端路由地址
-  const prefix = process.env.NODE_ENV === 'development' ? `/example/index.html` : `/react-native/example/index.html`;
+  const exampleEnv = dotenv.parsed || {};
+  const prefix =
+    process.env.NODE_ENV === 'development' ? `http://localhost:${exampleEnv.PORT}` : `/react-native/example/index.html`;
   mdSegment.mobileUrl = `${prefix}#/${componentName}`;
 
   // 设计指南内容 不展示 design Tab 则不解析
