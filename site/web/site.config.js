@@ -1,4 +1,3 @@
-/* eslint-disable import/no-relative-packages */
 import baseConfig from '@example/component-list.ts';
 
 const componentConfig = baseConfig.map((config) => {
@@ -11,8 +10,7 @@ const componentConfig = baseConfig.map((config) => {
       title: child.title,
       name: child.key,
       path: `/react-native/${child.key}`,
-      // component: () => import('../../src/components/Button/_example/index.md'),
-      component: () => import('../../src/components/Button/button.md'),
+      component: () => import(`../../src/components/Button/${child.key}.md`),
     }));
   }
   return result;

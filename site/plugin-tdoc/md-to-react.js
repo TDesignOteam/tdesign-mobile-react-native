@@ -162,7 +162,7 @@ function customRender({ source, file, md }) {
   };
 
   // md filename
-  const reg = file.match(/src\/[\w-]+\/([\w-]+)\.md/);
+  const reg = file.match(/src\/components\/[\w-]+\/([\w-]+)\.md/);
   const componentName = reg && reg[1];
 
   // split md
@@ -209,7 +209,7 @@ function customRender({ source, file, md }) {
   const exampleEnv = dotenv.parsed || {};
   const prefix =
     process.env.NODE_ENV === 'development' ? `http://localhost:${exampleEnv.PORT}` : `/react-native/example/index.html`;
-  mdSegment.mobileUrl = `${prefix}#/${componentName}`;
+  mdSegment.mobileUrl = `${prefix}/${componentName}`;
 
   // 设计指南内容 不展示 design Tab 则不解析
   if (pageData.isComponent && pageData.tdDocTabs.some((item) => item.tab === 'design')) {

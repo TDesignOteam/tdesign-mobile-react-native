@@ -8,10 +8,9 @@ import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated
 import { ThemeProvider, useTheme } from '@src/theme';
 import { Text, ScrollView, View, Button } from '@src/components';
 import { SafeAreaProvider, initialWindowMetrics, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { lazy, useCallback, Suspense, useState, useEffect } from 'react';
-import { LinkUnlinkIcon } from 'tdesign-icons-react-native/src';
+import { lazy, useCallback, Suspense, useState, useEffect, useMemo } from 'react';
 import { ListItem } from './components/ListItem';
-import listConfig from './component-list';
+import componentList from './component-list';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -24,11 +23,8 @@ function ExampleList() {
     <View className="flex1 bg">
       <StatusBar />
       <ScrollView>
-        <Button theme="primary" icon={<LinkUnlinkIcon />}>
-          哈哈
-        </Button>
         <View className="flex1 bg" style={{ paddingBottom: bottom }}>
-          {listConfig?.map?.((list, index) => {
+          {componentList?.map?.((list, index) => {
             const endIndex = (list?.children?.length ?? 0) - 1;
             return (
               <View className="mt16" key={list.title + index}>
@@ -99,7 +95,7 @@ function Home() {
       }}
       drawerContent={Menu}
     >
-      <Drawer.Screen name="Example" component={ExampleList} />
+      <Drawer.Screen name="ExampleList" component={ExampleList} />
     </Drawer.Navigator>
   );
 }
@@ -125,11 +121,33 @@ function App(): JSX.Element {
     }, 5000);
   }, []);
 
+  const linkingMap = useMemo(() => {
+    const result: Record<string, string> = {};
+    componentList.forEach((component) => {
+      component?.children?.forEach((child) => {
+        result[child.key] = child.key;
+      });
+    });
+    return result;
+  }, []);
+
   return (
     <ThemeProvider config={themeConfig} theme="light">
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-          <NavigationContainer>
+          <NavigationContainer
+            linking={{
+              prefixes: [],
+              config: {
+                screens: {
+                  ...linkingMap,
+                  Home: {
+                    path: '',
+                  },
+                },
+              },
+            }}
+          >
             <Suspense
               fallback={
                 <View className="flex1 flexCenter">
@@ -147,8 +165,8 @@ function App(): JSX.Element {
                   cardStyle: { flex: 1 },
                 }}
               >
-                <Stack.Screen options={{ headerShown: false }} name="ExampleList" component={Home} />
-                {listConfig?.map?.((list) => {
+                <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
+                {componentList?.map?.((list) => {
                   return list?.children?.map((item) => {
                     const LazyComponent = lazy(() => import('@src/components/Button/_example/index'));
                     function component(_props: any) {
