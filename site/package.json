@@ -6,6 +6,7 @@
     "move": "node ./scripts/move-example.js",
     "start": "vite & cd ../example && npm run web",
     "dev": "vite & cd ../example && npm run web",
+    "dev:skip": "vite",
     "build": "npm run move && vite build",
     "serve": "npm run move && vite preview",
     "intranet": "npm run move && vite build --mode intranet",
