@@ -168,7 +168,7 @@ function App(): JSX.Element {
                 <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
                 {componentList?.map?.((list) => {
                   return list?.children?.map((item) => {
-                    const LazyComponent = lazy(() => import('@src/components/Button/_example/index'));
+                    const LazyComponent = lazy(() => import(`@src/components/${item.key}/_example/index`));
                     function component(_props: any) {
                       return (
                         <ScrollView>
