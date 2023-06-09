@@ -370,10 +370,10 @@ export function commonClassNames(tokens: CommonTokensType = CommonTokens): Recor
     flexBetweenH: { display: 'flex', justifyContent: 'space-between' },
     flexAround: { display: 'flex', justifyContent: 'space-around', alignItems: 'center' },
     flexAroundH: { display: 'flex', justifyContent: 'space-around' },
-    flexEnd: { display: 'flex', alignItems: 'flex-end', justifyContent: 'center' },
+    flexEnd: { display: 'flex', justifyContent: 'flex-end', alignItems: 'center' },
     flexEndH: { display: 'flex', justifyContent: 'flex-end' },
     flexEndV: { display: 'flex', alignItems: 'flex-end' },
-    flexStart: { display: 'flex', alignItems: 'flex-start', justifyContent: 'center' },
+    flexStart: { display: 'flex', justifyContent: 'flex-start', alignItems: 'center' },
     flexStartH: { display: 'flex', justifyContent: 'flex-start' },
     flexStartV: { display: 'flex', alignItems: 'flex-start' },
 

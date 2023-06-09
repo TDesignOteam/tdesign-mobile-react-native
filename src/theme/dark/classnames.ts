@@ -112,6 +112,10 @@ export function darkClassNames(
     bgSubComponent: { backgroundColor: tokens.colors.bgSubComponent },
     bgSubComponentHover: { backgroundColor: tokens.colors.bgSubComponentHover },
     bgSubComponentActive: { backgroundColor: tokens.colors.bgSubComponentActive },
+    bgBrand: { backgroundColor: tokens.colors.brand },
+    bgError: { backgroundColor: tokens.colors.error },
+    bgSuccess: { backgroundColor: tokens.colors.success },
+    bgWarning: { backgroundColor: tokens.colors.warning },
 
     // ================  字体颜色  ===================
     white: { color: tokens.colors.white },
