@@ -2,7 +2,7 @@
  * @Author: yatessss
  * @Date: 2023-03-17 11:20:59
  * @LastEditors: yatessss
- * @LastEditTime: 2023-06-06 17:39:10
+ * @LastEditTime: 2023-06-09 16:47:48
  * @Description: 解析tsx文件 生成对应plugin需要的md格式文件
  */
 
@@ -95,7 +95,7 @@ function getCodeFromOtherFile(_path, variableName, exportType) {
 
       ast = parser.parse(code, {
         sourceType: 'module',
-        plugins: ['jsx'],
+        plugins: ['jsx', 'typescript'],
       });
       astSaveMap[path] = ast;
     }
@@ -134,7 +134,7 @@ function genMd(mdPath) {
   const code = fs.readFileSync(mdPath, 'utf8');
   const ast = parser.parse(code, {
     sourceType: 'module',
-    plugins: ['jsx'],
+    plugins: ['jsx', 'typescript'],
   });
 
   // 概览储存变量
@@ -227,7 +227,7 @@ function genMd(mdPath) {
             ?.trim()}\n\n`;
         }
 
-        if (tagName === 'CodeSpace') {
+        if (['CodeSpace', 'CodeSpaceOnlyDoc'].includes(tagName)) {
           nodePath.node?.children?.forEach((child) => {
             if (t.isJSXElement(child)) {
               const tag = child.openingElement?.name?.name || '';
