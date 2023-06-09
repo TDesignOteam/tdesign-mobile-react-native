@@ -1,2 +1,2 @@
-export { View, Text, ScrollView } from './Base';
+export { View, Text, ScrollView, Image, TextInput, WrapperComponent } from './Base';
 export { Button } from './Button';

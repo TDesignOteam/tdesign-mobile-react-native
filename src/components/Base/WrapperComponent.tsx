@@ -23,11 +23,6 @@ const CreateWrapperComponent = <P extends object>(Component: React.ComponentType
         if (colorClassNames.includes(name)) {
           return { color: theme.colors[name as keyof typeof theme.colors] };
         }
-        // if (fontClassNames.includes(name)) {
-        //   return name.includes('size')
-        //     ? { fontSize: theme.fonts[name as keyof typeof theme.fonts] }
-        //     : { lineHeight: theme.fonts[name as keyof typeof theme.fonts] };
-        // }
 
         console.warn('无效的className:', name);
         return undefined;
