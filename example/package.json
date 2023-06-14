@@ -6,11 +6,12 @@
     "postinstall": "cd ios && pod install",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "web": "craco start",
-    "build:web": "craco build",
+    "web": "npm run gen-router && craco start",
+    "build:web": "npm run gen-router && craco build",
     "lint": "eslint .",
-    "start": "react-native start",
-    "test": "jest"
+    "start": "npm run gen-router && react-native start",
+    "test": "jest",
+    "gen-router": "node ./scripts/gen-router.js"
   },
   "dependencies": {
     "@craco/craco": "^7.0.0",

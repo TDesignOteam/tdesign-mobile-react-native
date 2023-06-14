@@ -8,9 +8,10 @@ import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated
 import { ThemeProvider, useTheme } from '@src/theme';
 import { Text, ScrollView, View, Button } from '@src/components';
 import { SafeAreaProvider, initialWindowMetrics, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { lazy, useCallback, Suspense, useState, useEffect, useMemo } from 'react';
+import { useCallback, Suspense, useState, useEffect, useMemo } from 'react';
 import { ListItem } from './components/ListItem';
-import componentList from './component-list';
+import componentConfig from './config.json';
+import componentsMap from './componentList';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -24,7 +25,7 @@ function ExampleList() {
       <StatusBar />
       <ScrollView>
         <View className="flex1 bg" style={{ paddingBottom: bottom }}>
-          {componentList?.map?.((list, index) => {
+          {componentConfig?.map?.((list, index) => {
             const endIndex = (list?.children?.length ?? 0) - 1;
             return (
               <View className="mt16" key={list.title + index}>
@@ -123,7 +124,7 @@ function App(): JSX.Element {
 
   const linkingMap = useMemo(() => {
     const result: Record<string, string> = {};
-    componentList.forEach((component) => {
+    componentConfig.forEach((component) => {
       component?.children?.forEach((child) => {
         result[child.key] = child.key;
       });
@@ -166,9 +167,9 @@ function App(): JSX.Element {
                 }}
               >
                 <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
-                {componentList?.map?.((list) => {
+                {componentConfig?.map?.((list) => {
                   return list?.children?.map((item) => {
-                    const LazyComponent = lazy(() => import(`@src/components/${item.key}/_example/index`));
+                    const LazyComponent = componentsMap[item.key];
                     function component(_props: any) {
                       return (
                         <ScrollView>

@@ -1,4 +1,4 @@
-import baseConfig from '@example/component-list.ts';
+import baseConfig from '@example/config.json';
 
 const componentConfig = baseConfig.map((config) => {
   const result = {
