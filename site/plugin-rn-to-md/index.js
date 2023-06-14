@@ -2,7 +2,7 @@
  * @Author: yatessss
  * @Date: 2023-03-17 11:20:59
  * @LastEditors: yatessss
- * @LastEditTime: 2023-06-09 16:47:48
+ * @LastEditTime: 2023-06-14 15:15:32
  * @Description: 解析tsx文件 生成对应plugin需要的md格式文件
  */
 
@@ -70,6 +70,7 @@ const outputCode = (node) => {
 
   const formattedCode = prettier.format(output, {
     ...prettierRc,
+    parser: 'babel',
   });
   return formattedCode;
 };
