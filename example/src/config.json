@@ -9,6 +9,10 @@
           {
               "title": "Button 按钮",
               "key": "Button"
+          },
+          {
+              "title": "Touchable 触摸操作",
+              "key": "Touchable"
           }
       ]
   },
