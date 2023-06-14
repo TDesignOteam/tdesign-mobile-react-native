@@ -30,7 +30,12 @@
   },
   {
       "title": "数据展示",
-      "children": []
+      "children": [
+        {
+          "title": "Highlight 高亮",
+          "key": "Highlight"
+        }
+      ]
   },
   {
       "title": "消息提醒",
