@@ -1,2 +1,3 @@
-export { View, Text, ScrollView, Image, TextInput, WrapperComponent } from './Base';
-export { Button } from './Button';
+export * from './Base';
+export * from './Button';
+export * from './Touchable';
