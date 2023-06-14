@@ -1,2 +1,2 @@
-export { Button } from './Button';
-export { type TDButtonProps } from './types';
+export * from './Button';
+export * from './types';
