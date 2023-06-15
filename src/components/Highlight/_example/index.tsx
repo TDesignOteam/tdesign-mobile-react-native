@@ -16,6 +16,8 @@ const Demo = () => (
       <CodeSpace>
         <Highlight text="说着笑着的午后钟声一直在停留" keyword="着" />
       </CodeSpace>
+    </Section>
+    <Section>
       <H3>2.高亮样式</H3>
       <H4>设置color</H4>
       <CodeSpace>
@@ -25,10 +27,14 @@ const Demo = () => (
       <CodeSpace>
         <Highlight highlightStyle={{ color: 'green', fontSize: 30 }} text="我一个人在角落没有你陪伴的我" keyword="我" />
       </CodeSpace>
+    </Section>
+    <Section>
       <H3>3.忽略大小写</H3>
       <CodeSpace>
         <Highlight text="ABCDabcd" keyword="A" caseSensitive />
       </CodeSpace>
+    </Section>
+    <Section>
       <H3>4.设置文字样式</H3>
       <H4>基础容器支持的className</H4>
       <CodeSpace>
