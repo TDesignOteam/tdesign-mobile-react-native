@@ -18,7 +18,7 @@ export const Highlight = (props: HighlightProps) => {
 
   const [words, setWords] = useState([text]);
   const [pattern, setPattern] = useState<RegExp>();
-  console.log(caseSensitive);
+
   useEffect(() => {
     try {
       // 转义特殊字符，避免正则匹配失败
