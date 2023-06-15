@@ -1,14 +1,7 @@
 import { TextStyle, TextProps } from 'react-native';
+import { ContainerProps } from '../common';
 
-export interface HighlightProps extends TextProps {
-  /**
-   * className 可以传入theme中定义的className
-   */
-  className?: string;
-  /**
-   * text样式
-   */
-  style?: TextStyle;
+export type HighlightProps = {
   /**
    * 高亮样式
    */
@@ -31,4 +24,5 @@ export interface HighlightProps extends TextProps {
    * @default false
    */
   caseSensitive?: boolean;
-}
+} & TextProps &
+  ContainerProps;

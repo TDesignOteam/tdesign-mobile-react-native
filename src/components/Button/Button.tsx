@@ -14,13 +14,8 @@ import { Text, View } from '../Base';
 import { Touchable } from '../Touchable';
 import { TDButtonProps } from './types';
 
-const createStyles = (
-  appTheme: ThemeType,
-  size: TDButtonProps['size'] = 'medium',
-  theme: TDButtonProps['theme'] = 'default',
-  variant: TDButtonProps['variant'] = 'base',
-  shape: TDButtonProps['shape'] = 'round',
-) => {
+const createStyles = (props: { appTheme: ThemeType } & Pick<TDButtonProps, 'size' | 'theme' | 'variant' | 'shape'>) => {
+  const { appTheme, size = 'medium', theme = 'default', variant = 'base', shape = 'round' } = props;
   const isBaseVariant = variant === 'base';
   const isTextVariant = variant === 'text';
 
@@ -102,7 +97,7 @@ export const Button = (props: TDButtonProps) => {
   }));
 
   const styles = useMemo(() => {
-    return createStyles(appTheme, size, theme, variant, shape);
+    return createStyles({ appTheme, size, theme, variant, shape });
   }, [appTheme, size, theme, variant, shape]);
 
   const _iconColor = useMemo(() => {
