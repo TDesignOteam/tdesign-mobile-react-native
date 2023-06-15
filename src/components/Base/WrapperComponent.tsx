@@ -40,8 +40,8 @@ const CreateWrapperComponent = <P extends object>(Component: React.ComponentType
     let presetStyle = {};
     if (Component.displayName === 'Text') {
       presetStyle = { color: theme?.colors?.fontGray2 };
-      // 如果text没有先给一个空占位，避免高度闪动
-      if (!children) {
+      // text没有先给一个空占位避免高度闪动，但显式传null就不占位
+      if (!children && children !== null) {
         children = ' ';
       }
       // @ts-ignore
