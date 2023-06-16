@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Button from 'tdesign-react-native/components/Button';
+import { Button } from 'tdesign-react-native/components/Button';
 
 export const demoFiles = import.meta.globEager('../../src/**/_example/*.jsx');
 
