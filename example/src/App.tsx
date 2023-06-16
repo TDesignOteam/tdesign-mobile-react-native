@@ -74,7 +74,6 @@ function DrawerMenu(props: any) {
         /> */}
         <View className="mx12">
           <Button
-            loading
             theme="primary"
             content="change theme"
             onPress={() => {
@@ -172,7 +171,7 @@ function App(): JSX.Element {
                     const LazyComponent = componentsMap[item.key];
                     function component(_props: any) {
                       return (
-                        <ScrollView>
+                        <ScrollView className="bg">
                           <LazyComponent {..._props} />
                         </ScrollView>
                       );
