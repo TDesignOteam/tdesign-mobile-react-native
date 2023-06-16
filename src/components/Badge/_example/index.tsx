@@ -159,7 +159,7 @@ const Demo = () => (
           <Badge count={10} shape="round">
             <NotificationIcon width={30} height={30} />
           </Badge>
-          <Badge count={10} shape="rectangle">
+          <Badge count={10} shape="square">
             <Button size="small" theme="primary" content={'按钮'} />
           </Badge>
         </View>

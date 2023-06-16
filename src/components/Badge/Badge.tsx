@@ -10,7 +10,7 @@ const createStyles = (
 ) => {
   const { theme, color, fontColor, dot, shape = 'circle', offset } = props;
   const shapeMap = {
-    rectangle: theme.spacers.spacer0,
+    square: theme.spacers.spacer0,
     circle: theme.radius.round,
     round: theme.radius.default,
   };

@@ -2,7 +2,7 @@ import { ViewStyle } from 'react-native';
 import { PropsWithChildren } from 'react';
 import { ContainerProps } from '../common';
 
-export type BadgeShape = 'circle' | 'round' | 'rectangle';
+export type BadgeShape = 'circle' | 'round' | 'square';
 
 export type BadgeProps = PropsWithChildren<
   {
