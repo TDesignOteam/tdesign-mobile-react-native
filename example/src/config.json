@@ -38,6 +38,10 @@
         {
           "title": "Highlight 高亮",
           "key": "Highlight"
+        },
+        {
+          "title": "Tag 标签",
+          "key": "Tag"
         }
       ]
   },
