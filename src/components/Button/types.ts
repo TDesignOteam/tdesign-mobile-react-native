@@ -1,6 +1,6 @@
 import { ReactElement, PropsWithChildren, ReactNode } from 'react';
 import { ViewStyle, TextStyle } from 'react-native';
-import { TDThemeEnum, TDSizeEnum } from '../common';
+import { ThemeEnum, SizeEnum } from '../common';
 
 export type TDButtonProps = PropsWithChildren<{
   /**
@@ -29,7 +29,7 @@ export type TDButtonProps = PropsWithChildren<{
    * 组件尺寸
    * @default medium
    */
-  size?: TDSizeEnum;
+  size?: SizeEnum;
   /**
    * 组件形状
    * @default round
@@ -38,7 +38,7 @@ export type TDButtonProps = PropsWithChildren<{
   /**
    * 组件风格，依次为默认色、品牌色、危险色、警告色、成功色
    */
-  theme?: TDThemeEnum;
+  theme?: ThemeEnum;
   /**
    * 按钮形式，基础、线框、文字
    * @default base
