@@ -1,6 +1,6 @@
 /**
- * title: Highlight 高亮
- * description: 文案需要关键字高亮的场景使用
+ * title: Highlight 标签
+ * description: 用于表明主体的类目，属性或状态。
  * spline: base
  * isComponent: true
  * toc: false
@@ -175,19 +175,19 @@ const Demo = () => (
             content={'标签'}
           />
         </View>
-        <H5>样式</H5>
-        <CodeSpace>
-          <View className="flexRow flexCenterV gapX20">
-            <Tag style={{ opacity: 0.5 }} theme="warning" content={'标签'} />
-            <Tag style={{ marginRight: 10 }} theme="warning" variant="light" content={'标签'} />
-            <Tag
-              style={{ padding: 10, backgroundColor: 'lightgray' }}
-              theme="warning"
-              variant="outline"
-              content={'标签'}
-            />
-          </View>
-        </CodeSpace>
+      </CodeSpace>
+      <H5>样式</H5>
+      <CodeSpace>
+        <View className="flexRow flexCenterV gapX20">
+          <Tag style={{ opacity: 0.5 }} theme="warning" content={'标签'} />
+          <Tag style={{ marginRight: 10 }} theme="warning" variant="light" content={'标签'} />
+          <Tag
+            style={{ padding: 10, backgroundColor: 'lightgray' }}
+            theme="warning"
+            variant="outline"
+            content={'标签'}
+          />
+        </View>
       </CodeSpace>
     </Section>
   </>
