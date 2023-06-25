@@ -36,6 +36,10 @@
           "key": "Badge"
         },
         {
+          "title": "Collapse 折叠面板",
+          "key": "Collapse"
+        },
+        {
           "title": "Highlight 高亮",
           "key": "Highlight"
         },
