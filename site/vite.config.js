@@ -83,6 +83,6 @@ export default ({ mode }) =>
         exclude: [/\/_example\/.*\.tsx$/],
       }),
       VitePWA(pwaConfig),
-      replace({ __DATE__: new Date().toISOString() }),
+      replace({ __DATE__: new Date().toISOString(), preventAssignment: true }),
     ],
   });
