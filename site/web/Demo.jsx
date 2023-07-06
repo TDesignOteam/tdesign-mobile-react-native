@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Button from 'tdesign-react-native/components/Button';
 
 export const demoFiles = import.meta.globEager('../../src/**/_example/*.jsx');
 
@@ -23,7 +22,6 @@ export default function Demo() {
   const [, componentName, demoName] = match;
   const demoList = demoObject[componentName];
   const demoFunc = demoObject[`${componentName}/${demoName}`];
-
   return demoFunc ? (
     demoFunc()
   ) : (
@@ -31,9 +29,9 @@ export default function Demo() {
       {demoList.map((demoName) => (
         <li key={demoName}>
           <Link to={`/react-native/demos/${componentName}/${demoName}`}>
-            <Button style={{ fontSize: 18 }} variant="text">
+            <p style={{ fontSize: 18 }} variant="text">
               {demoName}
-            </Button>
+            </p>
           </Link>
         </li>
       ))}

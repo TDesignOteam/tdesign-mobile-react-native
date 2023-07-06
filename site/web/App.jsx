@@ -64,7 +64,6 @@ function Components() {
   useEffect(() => {
     tdHeaderRef.current.framework = 'react';
     // tdDocSearch.current.docsearchInfo = { indexName: 'tdesign_doc_mobile_react' };
-    console.log('routerList------>>', routerList);
     tdDocAsideRef.current.routerList = routerList;
     tdDocAsideRef.current.onchange = ({ detail }) => {
       if (location.pathname === detail) return;
@@ -112,14 +111,6 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Navigate replace to="/react-native/getting-started" />} />
         <Route exact path="/react-native" element={<Navigate replace to="/react-native/getting-started" />} />
-        <Route
-          path="/react-native/demos/*"
-          element={
-            <Suspense fallback={'拼命加载中...'}>
-              <LazyDemo />
-            </Suspense>
-          }
-        />
         <Route path="/react-native/*" element={<Components />}>
           {renderRouter}
         </Route>

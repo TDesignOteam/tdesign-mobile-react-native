@@ -1,47 +1,84 @@
-import { ITheme } from './types';
-
-// 通用
-import commonSpacers from './common/spacers';
-import commonDimensions from './common/dimensions';
-import commonFonts from './common/fonts';
+import { isEmpty } from 'lodash';
+import { ThemeType, ThemeTokensType, CommonTokensType } from './types';
 
 // light
-import lightColors from './light/colors';
-import lightAtom from './light/atom';
+import { lightTokens } from './light/tokens';
+import { lightClassNames } from './light/classnames';
 
 // dark
-import darkColors from './dark/colors';
-import darkAtom from './dark/atom';
-
-export const light: ITheme = {
-  name: 'light',
-  colors: lightColors,
-  spacers: commonSpacers,
-  dimensions: commonDimensions,
-  fonts: commonFonts,
-  atom: lightAtom,
-};
-
-export const dark: ITheme = {
-  name: 'dark',
-  colors: darkColors,
-  spacers: commonSpacers,
-  dimensions: commonDimensions,
-  fonts: commonFonts,
-  atom: darkAtom,
-};
-
-export const auto = undefined;
-
-const themes = {
-  auto,
-  light,
-  dark,
-} as const;
+import { darkTokens } from './dark/tokens';
+import { darkClassNames } from './dark/classnames';
+import { commonClassNames } from './common/classnames';
 
 /**
  * @description 主题类型
  */
-export type ThemeType = keyof typeof themes;
+export type ThemeName = 'light' | 'dark';
 
-export default themes;
+export type ConfigType = {
+  light?: Partial<ThemeType>;
+  dark?: Partial<ThemeType>;
+};
+class Theme {
+  public name: ThemeName;
+
+  public light: ThemeType;
+
+  public dark: ThemeType;
+
+  constructor() {
+    this.name = 'light';
+    this.light = {
+      ...lightTokens,
+      classnames: {
+        ...lightClassNames(),
+      },
+    };
+    this.dark = {
+      ...darkTokens,
+      classnames: {
+        ...darkClassNames(),
+      },
+    };
+  }
+
+  initTheme(config?: ConfigType) {
+    const { light, dark } = config || {};
+
+    function mergeTheme(originTheme: ThemeType, customTheme: Partial<ThemeType>): ThemeType {
+      const mergeResult: Record<string, any> = {};
+      Object.keys(originTheme).forEach((key) => {
+        if (key !== 'classnames') {
+          mergeResult[key] = {
+            ...originTheme?.[key as keyof ThemeType],
+            ...(customTheme?.[key as keyof ThemeType] || {}),
+          };
+        }
+      });
+      mergeResult.classnames = {
+        ...originTheme.classnames,
+        ...lightClassNames(mergeResult as ThemeTokensType, commonClassNames(mergeResult as CommonTokensType)),
+        ...customTheme.classnames,
+      };
+
+      return mergeResult as ThemeType;
+    }
+
+    if (!isEmpty(light)) {
+      this.light = mergeTheme(this.light, light);
+    }
+    if (!isEmpty(dark)) {
+      this.dark = mergeTheme(this.dark, dark);
+    }
+  }
+
+  changeTheme(themeType: ThemeName) {
+    this.name = themeType;
+  }
+
+  getThemeName() {
+    return this.name;
+  }
+}
+
+export const themes = new Theme();

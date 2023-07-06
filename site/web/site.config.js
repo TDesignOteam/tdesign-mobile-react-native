@@ -1,5 +1,4 @@
-/* eslint-disable import/no-relative-packages */
-import baseConfig from '@example/base-config.ts';
+import baseConfig from '@example/config.json';
 
 const componentConfig = baseConfig.map((config) => {
   const result = {
@@ -11,8 +10,7 @@ const componentConfig = baseConfig.map((config) => {
       title: child.title,
       name: child.key,
       path: `/react-native/${child.key}`,
-      // component: () => import('../../src/components/Button/_example/index.md'),
-      component: () => import('../../src/components/Button/button.md'),
+      component: () => import(`../../src/components/${child.key}/${child.key}.md`),
     }));
   }
   return result;
@@ -43,6 +41,18 @@ const siteConfig = {
           // TODO FIX
           component: () => import('@common/docs/mobile/overview.md'),
           // component: () => null,
+        },
+      ],
+    },
+    {
+      title: '全局配置',
+      type: 'config',
+      children: [
+        {
+          title: '主题',
+          name: 'theme',
+          path: '/react-native/theme',
+          component: () => import('tdesign-react-native/theme/theme.md'),
         },
       ],
     },

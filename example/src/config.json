@@ -1,0 +1,56 @@
+[
+  {
+      "title": "基础组件",
+      "children": [
+          {
+              "title": "Base 基础容器",
+              "key": "Base"
+          },
+          {
+              "title": "Button 按钮",
+              "key": "Button"
+          },
+          {
+              "title": "Touchable 触摸操作",
+              "key": "Touchable"
+          }
+      ]
+  },
+  {
+      "title": "布局",
+      "children": []
+  },
+  {
+      "title": "导航",
+      "children": []
+  },
+  {
+      "title": "输入",
+      "children": []
+  },
+  {
+      "title": "数据展示",
+      "children": [
+        {
+          "title": "Badge 徽标",
+          "key": "Badge"
+        },
+        {
+          "title": "Collapse 折叠面板",
+          "key": "Collapse"
+        },
+        {
+          "title": "Highlight 高亮",
+          "key": "Highlight"
+        },
+        {
+          "title": "Tag 标签",
+          "key": "Tag"
+        }
+      ]
+  },
+  {
+      "title": "消息提醒",
+      "children": []
+  }
+]

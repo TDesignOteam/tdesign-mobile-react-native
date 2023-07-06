@@ -5,13 +5,13 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, useDrawerProgress } from '@react-navigation/drawer';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated';
-import { useTheme } from '@src/theme';
+import { ThemeProvider, useTheme } from '@src/theme';
 import { Text, ScrollView, View, Button } from '@src/components';
-import ThemeProvider from '@src/theme/ThemeProvider';
 import { SafeAreaProvider, initialWindowMetrics, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { lazy, useCallback, Suspense } from 'react';
+import { useCallback, Suspense, useState, useEffect, useMemo } from 'react';
 import { ListItem } from './components/ListItem';
-import listConfig from './list-config';
+import componentConfig from './config.json';
+import componentsMap from './componentList';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -25,7 +25,7 @@ function ExampleList() {
       <StatusBar />
       <ScrollView>
         <View className="flex1 bg" style={{ paddingBottom: bottom }}>
-          {listConfig?.map?.((list, index) => {
+          {componentConfig?.map?.((list, index) => {
             const endIndex = (list?.children?.length ?? 0) - 1;
             return (
               <View className="mt16" key={list.title + index}>
@@ -45,8 +45,6 @@ function ExampleList() {
               </View>
             );
           })}
-          {/* <Test /> */}
-          {/* <Demo /> */}
         </View>
       </ScrollView>
     </View>
@@ -97,17 +95,66 @@ function Home() {
       }}
       drawerContent={Menu}
     >
-      <Drawer.Screen name="Example" component={ExampleList} />
+      <Drawer.Screen name="ExampleList" component={ExampleList} />
     </Drawer.Navigator>
   );
 }
+
 function App(): JSX.Element {
+  const [themeConfig, setThemeConfig] = useState({});
+
+  // 测试异步加载主题
+  useEffect(() => {
+    setTimeout(() => {
+      setThemeConfig({
+        light: {
+          colors: {
+            fontGray4: 'violet',
+          },
+          classnames: {
+            test: {
+              backgroundColor: 'violet',
+            },
+          },
+        },
+      });
+    }, 5000);
+  }, []);
+
+  const linkingMap = useMemo(() => {
+    const result: Record<string, string> = {};
+    componentConfig.forEach((component) => {
+      component?.children?.forEach((child) => {
+        result[child.key] = child.key;
+      });
+    });
+    return result;
+  }, []);
+
   return (
-    <ThemeProvider>
+    <ThemeProvider config={themeConfig} theme="light">
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-          <NavigationContainer>
-            <Suspense fallback={<Text>loading...</Text>}>
+          <NavigationContainer
+            linking={{
+              prefixes: [],
+              config: {
+                screens: {
+                  ...linkingMap,
+                  Home: {
+                    path: '',
+                  },
+                },
+              },
+            }}
+          >
+            <Suspense
+              fallback={
+                <View className="flex1 flexCenter">
+                  <Text>loading...</Text>
+                </View>
+              }
+            >
               <Stack.Navigator
                 initialRouteName="ExampleList"
                 screenOptions={{
@@ -115,11 +162,20 @@ function App(): JSX.Element {
                   presentation: 'card',
                   cardOverlayEnabled: true,
                   animationEnabled: true,
+                  cardStyle: { flex: 1 },
                 }}
               >
-                <Stack.Screen options={{ headerShown: false }} name="ExampleList" component={Home} />
-                {listConfig?.map?.((list) => {
+                <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
+                {componentConfig?.map?.((list) => {
                   return list?.children?.map((item) => {
+                    const LazyComponent = componentsMap[item.key];
+                    function component(_props: any) {
+                      return (
+                        <ScrollView className="bg">
+                          <LazyComponent {..._props} />
+                        </ScrollView>
+                      );
+                    }
                     return (
                       <Stack.Screen
                         name={item.key}
@@ -128,8 +184,9 @@ function App(): JSX.Element {
                           headerTitle: item.title,
                           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                         }}
-                        component={lazy(() => import('@src/components/Button/_example/index'))}
-                      />
+                      >
+                        {(props) => component(props)}
+                      </Stack.Screen>
                     );
                   });
                 })}

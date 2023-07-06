@@ -3,6 +3,11 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+
+const dotenv = require('dotenv').config({
+  path: path.resolve(__dirname, '../../example/.env'),
+});
+
 // import camelCase from 'camelcase';
 
 // import testCoverage from '../test-coverage';
@@ -157,7 +162,7 @@ function customRender({ source, file, md }) {
   };
 
   // md filename
-  const reg = file.match(/src\/[\w-]+\/([\w-]+)\.md/);
+  const reg = file.match(/src\/components\/[\w-]+\/([\w-]+)\.md/);
   const componentName = reg && reg[1];
 
   // split md
@@ -201,8 +206,10 @@ function customRender({ source, file, md }) {
   }
 
   // 移动端路由地址
-  const prefix = process.env.NODE_ENV === 'development' ? `/example/index.html` : `/react-native/example/index.html`;
-  mdSegment.mobileUrl = `${prefix}#/${componentName}`;
+  const exampleEnv = dotenv.parsed || {};
+  const prefix =
+    process.env.NODE_ENV === 'development' ? `http://localhost:${exampleEnv.PORT}` : `/react-native/example/index.html`;
+  mdSegment.mobileUrl = `${prefix}/${componentName}`;
 
   // 设计指南内容 不展示 design Tab 则不解析
   if (pageData.isComponent && pageData.tdDocTabs.some((item) => item.tab === 'design')) {
