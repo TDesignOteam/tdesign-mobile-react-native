@@ -27,7 +27,6 @@ export type AnimationProps = {
    * @default 'center'
    */
   placement?: PlacementProps;
-  _id?: number;
   /**
    * 延迟时间
    * @default 0
