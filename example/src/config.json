@@ -13,6 +13,10 @@
           {
               "title": "Touchable 触摸操作",
               "key": "Touchable"
+          },
+          {
+              "title": "AnimationView 动画",
+              "key": "AnimationView"
           }
       ]
   },
