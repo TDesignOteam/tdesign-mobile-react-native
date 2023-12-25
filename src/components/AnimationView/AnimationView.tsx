@@ -72,7 +72,6 @@ export const AnimationView = React.forwardRef<unknown, AnimationProps>((props) =
     .onChange((e) => {
       'worklet';
 
-      console.log(e.changeY, offset.value.y, toFlatten?.translateY);
       switch (direction) {
         case Directions.DOWN:
           if (e.changeY + offset.value.y < toFlatten?.translateY ?? 0) {
