@@ -13,6 +13,10 @@
           {
               "title": "Touchable 触摸操作",
               "key": "Touchable"
+          },
+          {
+              "title": "AnimationView 动画",
+              "key": "AnimationView"
           }
       ]
   },
@@ -51,6 +55,11 @@
   },
   {
       "title": "消息提醒",
-      "children": []
+      "children": [
+        {
+          "title": "Popup 弹出层",
+          "key": "Popup"
+        }
+      ]
   }
 ]

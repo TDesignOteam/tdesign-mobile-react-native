@@ -39,6 +39,7 @@ module.exports = {
           runtime: 'automatic',
         },
       ],
+      ['@babel/plugin-transform-typescript', { allowDeclareFields: true }],
       ['@babel/plugin-proposal-private-methods', { loose: true }],
       ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
     ],

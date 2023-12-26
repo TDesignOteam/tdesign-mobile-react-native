@@ -1,3 +1,4 @@
+// export * from './AnimationView';
 export * from './Base';
 export * from './Button';
 export * from './Touchable';
@@ -5,3 +6,5 @@ export * from './Highlight';
 export * from './Badge';
 export * from './Tag';
 export * from './Collapse';
+export * from './AnimationView';
+export * from './Popup';

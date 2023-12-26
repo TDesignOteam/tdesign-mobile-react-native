@@ -12,6 +12,7 @@ const alias = {
   'react-native': path.resolve(exampleDir, 'node_modules/react-native'),
   'react-native-reanimated': path.resolve(rootDir, 'node_modules/react-native-reanimated'),
   'hoist-non-react-statics': path.resolve(rootDir, 'node_modules/hoist-non-react-statics'),
+  'tdesign-icons-react-native': path.resolve(rootDir, '../tdesign-icons/packages/react-native'),
 };
 prefixes.forEach((prefix) => {
   const values = paths[prefix];

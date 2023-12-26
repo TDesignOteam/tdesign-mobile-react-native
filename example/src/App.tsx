@@ -6,7 +6,7 @@ import { createDrawerNavigator, DrawerContentScrollView, useDrawerProgress } fro
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import { ThemeProvider, useTheme } from '@src/theme';
-import { Text, ScrollView, View, Button } from '@src/components';
+import { Text, ScrollView, View, Button, PopupContainer } from '@src/components';
 import { SafeAreaProvider, initialWindowMetrics, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useCallback, Suspense, useState, useEffect, useMemo } from 'react';
 import { ListItem } from './components/ListItem';
@@ -134,66 +134,68 @@ function App(): JSX.Element {
   return (
     <ThemeProvider config={themeConfig} theme="light">
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-          <NavigationContainer
-            linking={{
-              prefixes: [],
-              config: {
-                screens: {
-                  ...linkingMap,
-                  Home: {
-                    path: '',
+        <PopupContainer>
+          <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+            <NavigationContainer
+              linking={{
+                prefixes: [],
+                config: {
+                  screens: {
+                    ...linkingMap,
+                    Home: {
+                      path: '',
+                    },
                   },
                 },
-              },
-            }}
-          >
-            <Suspense
-              fallback={
-                <View className="flex1 flexCenter">
-                  <Text>loading...</Text>
-                </View>
-              }
+              }}
             >
-              <Stack.Navigator
-                initialRouteName="ExampleList"
-                screenOptions={{
-                  headerMode: 'screen',
-                  presentation: 'card',
-                  cardOverlayEnabled: true,
-                  animationEnabled: true,
-                  cardStyle: { flex: 1 },
-                }}
+              <Suspense
+                fallback={
+                  <View className="flex1 flexCenter">
+                    <Text>loading...</Text>
+                  </View>
+                }
               >
-                <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
-                {componentConfig?.map?.((list) => {
-                  return list?.children?.map((item) => {
-                    const LazyComponent = componentsMap[item.key];
-                    function component(_props: any) {
+                <Stack.Navigator
+                  initialRouteName="ExampleList"
+                  screenOptions={{
+                    headerMode: 'screen',
+                    presentation: 'card',
+                    cardOverlayEnabled: true,
+                    animationEnabled: true,
+                    cardStyle: { flex: 1 },
+                  }}
+                >
+                  <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
+                  {componentConfig?.map?.((list) => {
+                    return list?.children?.map((item) => {
+                      const LazyComponent = componentsMap[item.key];
+                      function component(_props: any) {
+                        return (
+                          <ScrollView className="bg">
+                            <LazyComponent {..._props} />
+                          </ScrollView>
+                        );
+                      }
                       return (
-                        <ScrollView className="bg">
-                          <LazyComponent {..._props} />
-                        </ScrollView>
+                        <Stack.Screen
+                          name={item.key}
+                          options={{
+                            headerBackTitleVisible: false,
+                            headerTitle: item.title,
+                            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                          }}
+                        >
+                          {(props) => component(props)}
+                        </Stack.Screen>
                       );
-                    }
-                    return (
-                      <Stack.Screen
-                        name={item.key}
-                        options={{
-                          headerBackTitleVisible: false,
-                          headerTitle: item.title,
-                          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-                        }}
-                      >
-                        {(props) => component(props)}
-                      </Stack.Screen>
-                    );
-                  });
-                })}
-              </Stack.Navigator>
-            </Suspense>
-          </NavigationContainer>
-        </SafeAreaProvider>
+                    });
+                  })}
+                </Stack.Navigator>
+              </Suspense>
+            </NavigationContainer>
+          </SafeAreaProvider>
+        </PopupContainer>
       </GestureHandlerRootView>
     </ThemeProvider>
   );
