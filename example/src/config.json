@@ -55,6 +55,11 @@
   },
   {
       "title": "消息提醒",
-      "children": []
+      "children": [
+        {
+          "title": "Popup 弹出层",
+          "key": "Popup"
+        }
+      ]
   }
 ]

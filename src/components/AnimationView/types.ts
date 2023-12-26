@@ -1,6 +1,7 @@
 import { ViewStyle, ImageStyle, TextStyle, StyleProp } from 'react-native';
 import { Directions } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
+import { PlacementProps } from '../Popup';
 
 export type AnimationType = {
   to?: TextStyle & ViewStyle & ImageStyle;
@@ -18,8 +19,6 @@ export const DIRECTION: Record<PlacementProps, AnimationDirections> = {
   center: 0,
   none: 0,
 };
-
-export type PlacementProps = 'right' | 'left' | 'top' | 'bottom' | 'center' | 'fullScreen' | 'none';
 
 export type AnimationProps = {
   /**
