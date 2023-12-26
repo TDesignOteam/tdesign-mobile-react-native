@@ -8,7 +8,6 @@ import { ThemeType, ThemeContext } from '../../theme';
 import { PopupConfig, PopupItemConfig } from './types';
 import { AnimationView } from '../AnimationView/AnimationView';
 
-console.log('isWeb---->>', isWeb);
 const styles = StyleSheet.create({
   root: {
     overflow: 'hidden',
