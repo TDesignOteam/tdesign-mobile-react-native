@@ -40,7 +40,7 @@ const createStyles = (props: { appTheme: ThemeType } & Pick<TDButtonProps, 'size
   };
 
   const backgroundColorMap = {
-    default: appTheme.colors.gray4,
+    default: appTheme.colors.bgComponent,
     primary: appTheme.colors.brand7,
     danger: appTheme.colors.error6,
     warning: appTheme.colors.warning5,
