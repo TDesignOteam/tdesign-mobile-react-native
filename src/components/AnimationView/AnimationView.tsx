@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, ForwardedRef } from 'react';
 import { GestureDetector, Gesture, Directions } from 'react-native-gesture-handler';
 import Animated, {
   useSharedValue,
@@ -11,7 +11,7 @@ import Animated, {
 import { wrapStyleTransforms, flattenStyle, TRANSFORM_STYLE_PROPERTIES } from './utils';
 import { AnimationProps, DIRECTION, AnimationDirections } from './types';
 
-export const AnimationView = React.forwardRef<unknown, AnimationProps>((props) => {
+export const AnimationView = React.forwardRef<unknown, AnimationProps>((props, ref: ForwardedRef<any>) => {
   const {
     style,
     duration = 300,
@@ -163,12 +163,12 @@ export const AnimationView = React.forwardRef<unknown, AnimationProps>((props) =
 
   return gesture ? (
     <GestureDetector gesture={gesturePan}>
-      <Animated.View style={[style, animatedStyles]} {...rest}>
+      <Animated.View ref={ref} style={[style, animatedStyles]} {...rest}>
         {props.children}
       </Animated.View>
     </GestureDetector>
   ) : (
-    <Animated.View style={[style, animatedStyles]} {...rest}>
+    <Animated.View ref={ref} style={[style, animatedStyles]} {...rest}>
       {props.children}
     </Animated.View>
   );
