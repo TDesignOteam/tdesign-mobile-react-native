@@ -5,7 +5,7 @@ import { Directions } from 'react-native-gesture-handler';
 import { isBoolean } from 'lodash';
 import { Popup, View, Text, Touchable } from '../index';
 import { ThemeContext } from '../../theme';
-import { MessagegProps } from './types';
+import { MessageProps } from './types';
 
 const { StatusBarManager } = NativeModules;
 
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 });
 
 export class Message extends Component {
-  static defaultProps: MessagegProps = {
+  static defaultProps: MessageProps = {
     text: '',
     duration: 3000,
     theme: 'default',
@@ -34,7 +34,7 @@ export class Message extends Component {
 
   static messageId?: number;
 
-  static show(config: MessagegProps) {
+  static show(config: MessageProps) {
     // 距离顶部高度 statueBar + navigateBar + 10
     const offsetY = (StatusBarManager?.HEIGHT || 0) + (Platform.OS === 'web' ? 64 : 44) + 10;
     const mergedConfig = { ...Message.defaultProps, ...config };
@@ -63,7 +63,7 @@ export class Message extends Component {
     return Popup.hide(id);
   }
 
-  static info(text: string, config?: Omit<MessagegProps, 'text'>) {
+  static info(text: string, config?: Omit<MessageProps, 'text'>) {
     Message.messageId = Message.show({
       text,
       icon: <ErrorCircleIcon />,
@@ -73,7 +73,7 @@ export class Message extends Component {
     return Message.messageId;
   }
 
-  static success(text: string, config?: Omit<MessagegProps, 'text'>) {
+  static success(text: string, config?: Omit<MessageProps, 'text'>) {
     Message.messageId = Message.show({
       text,
       icon: <ErrorCircleIcon />,
@@ -83,7 +83,7 @@ export class Message extends Component {
     return Message.messageId;
   }
 
-  static error(text: string, config?: Omit<MessagegProps, 'text'>) {
+  static error(text: string, config?: Omit<MessageProps, 'text'>) {
     Message.messageId = Message.show({
       text,
       icon: <ErrorCircleIcon />,
@@ -93,7 +93,7 @@ export class Message extends Component {
     return Message.messageId;
   }
 
-  static warn(text: string, config?: Omit<MessagegProps, 'text'>) {
+  static warn(text: string, config?: Omit<MessageProps, 'text'>) {
     Message.messageId = Message.show({
       text,
       icon: <ErrorCircleIcon />,
@@ -103,11 +103,11 @@ export class Message extends Component {
     return Message.messageId;
   }
 
-  public props: MessagegProps;
+  public props: MessageProps;
 
   public messageId?: number;
 
-  constructor(props: MessagegProps) {
+  constructor(props: MessageProps) {
     super(props);
 
     this.props = props;

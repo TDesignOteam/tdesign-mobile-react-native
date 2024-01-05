@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { ThemeEnum } from '../common';
 
-export type MessagegProps = {
+export type MessageProps = {
   /**
    * 提示文案
    */
