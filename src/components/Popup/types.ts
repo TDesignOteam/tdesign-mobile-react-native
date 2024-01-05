@@ -6,7 +6,7 @@ import { AnimationType } from '../AnimationView';
 
 export type PlacementProps = 'right' | 'left' | 'top' | 'bottom' | 'center' | 'fullScreen' | 'none';
 
-export interface PopupConfig {
+export type PopupConfig = {
   /**
    * 预设展示位置 配合动画确定位置
    * @default 'center'
@@ -109,9 +109,9 @@ export interface PopupConfig {
    * 隐藏后的回调
    */
   onHide?: () => void;
-}
+};
 
-export interface PopupItemConfig {
+export type PopupItemConfig = {
   element: ReactElement;
   config: PopupConfig;
   id: number;
@@ -119,4 +119,4 @@ export interface PopupItemConfig {
   popupVisible: boolean;
   // 保存原始的config配置 用户动画重置
   _originConfig: PopupConfig;
-}
+};
