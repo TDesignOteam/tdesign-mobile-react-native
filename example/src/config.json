@@ -59,6 +59,10 @@
         {
           "title": "Popup 弹出层",
           "key": "Popup"
+        },
+        {
+          "title": "Message 消息提醒",
+          "key": "Message"
         }
       ]
   }
