@@ -9,3 +9,5 @@ export * from './Collapse';
 export * from './AnimationView';
 export * from './Popup';
 export * from './Message';
+export * from './Loading';
+export * from './Toast';
