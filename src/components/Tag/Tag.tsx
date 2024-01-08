@@ -6,7 +6,7 @@ import { Text, View, Touchable } from '../index';
 import type { TagProps } from './types';
 
 const createStyles = (props: { appTheme: ThemeType } & Pick<TagProps, 'size' | 'theme' | 'shape' | 'variant'>) => {
-  const { appTheme, size = 'medium', theme = 'default', shape = 'square', variant = 'dark' } = props;
+  const { appTheme, size = 'normal', theme = 'default', shape = 'square', variant = 'dark' } = props;
 
   // 尺寸
   const sizeMap = {
@@ -14,7 +14,7 @@ const createStyles = (props: { appTheme: ThemeType } & Pick<TagProps, 'size' | '
       paddingHorizontal: appTheme.spacers.spacer16,
       paddingVertical: appTheme.spacers.spacer4,
     },
-    medium: {
+    normal: {
       paddingHorizontal: appTheme.spacers.spacer12,
       paddingVertical: appTheme.spacers.spacer2,
     },
@@ -27,7 +27,7 @@ const createStyles = (props: { appTheme: ThemeType } & Pick<TagProps, 'size' | '
   // 字体大小
   const fontMap = {
     large: appTheme.classnames.text4,
-    medium: appTheme.classnames.text5,
+    normal: appTheme.classnames.text5,
     small: appTheme.classnames.text6,
   };
 
@@ -133,7 +133,7 @@ export const Tag = (props: TagProps) => {
     children,
     icon,
     content = children,
-    size = 'medium',
+    size = 'normal',
     theme = 'default',
     shape = 'square',
     variant = 'dark',
