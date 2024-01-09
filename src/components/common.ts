@@ -1,7 +1,10 @@
 import { ViewStyle } from 'react-native';
 
 export type ThemeEnum = 'default' | 'primary' | 'danger' | 'warning' | 'success';
-export type SizeEnum = 'small' | 'medium' | 'large';
+
+export type SizeEnum = 'small' | 'normal' | 'large';
+
+export type LayoutEnum = 'horizontal' | 'vertical';
 
 export type ContainerStyle = {
   /**

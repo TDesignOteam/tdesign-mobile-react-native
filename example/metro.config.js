@@ -22,7 +22,6 @@ module.exports = {
     //     },
     //   },
     // ),
-    nodeModulesPaths: [path.resolve(__dirname, '../../tdesign-icons')],
   },
   transformer: {
     getTransformOptions: async () => ({
@@ -32,5 +31,5 @@ module.exports = {
       },
     }),
   },
-  watchFolders: [path.resolve(__dirname, '..'), path.resolve(__dirname, '../../tdesign-icons')],
+  watchFolders: [path.resolve(__dirname, '..')],
 };

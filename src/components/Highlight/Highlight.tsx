@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from '../../theme';
-import { Text } from '../index';
+import { Text } from '../Base';
 import { HighlightProps } from './types';
 
 export const Highlight = (props: HighlightProps) => {

@@ -34,8 +34,8 @@ export type TagProps = PropsWithChildren<
      */
     disabled?: boolean;
     /**
-     * 标签尺寸。可选项：small/medium/large
-     * @default medium
+     * 标签尺寸。可选项：small/normal/large
+     * @default normal
      */
     size?: SizeEnum;
     /**

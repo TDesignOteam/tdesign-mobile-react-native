@@ -15,19 +15,19 @@ import { Touchable } from '../Touchable';
 import { TDButtonProps } from './types';
 
 const createStyles = (props: { appTheme: ThemeType } & Pick<TDButtonProps, 'size' | 'theme' | 'variant' | 'shape'>) => {
-  const { appTheme, size = 'medium', theme = 'default', variant = 'base', shape = 'round' } = props;
+  const { appTheme, size = 'normal', theme = 'default', variant = 'base', shape = 'round' } = props;
   const isBaseVariant = variant === 'base';
   const isTextVariant = variant === 'text';
 
   const heightMap = {
     small: 32,
-    medium: 36,
+    normal: 36,
     large: 44,
   };
 
   const fontMap = {
     small: appTheme.classnames.text4,
-    medium: appTheme.classnames.text4,
+    normal: appTheme.classnames.text4,
     large: appTheme.classnames.text3,
   };
 
@@ -40,7 +40,7 @@ const createStyles = (props: { appTheme: ThemeType } & Pick<TDButtonProps, 'size
   };
 
   const backgroundColorMap = {
-    default: appTheme.colors.gray4,
+    default: appTheme.colors.bgComponent,
     primary: appTheme.colors.brand7,
     danger: appTheme.colors.error6,
     warning: appTheme.colors.warning5,
@@ -118,7 +118,7 @@ export const Button = (props: TDButtonProps) => {
     return (
       <View style={_iconStyle}>
         <Animated.View style={animatedStyle}>
-          <LoadingIcon color={_iconColor} />
+          <LoadingIcon color={_iconColor as string} />
         </Animated.View>
       </View>
     );
@@ -153,7 +153,7 @@ export const Button = (props: TDButtonProps) => {
 Button.defaultProps = {
   disabled: false,
   icon: null,
-  size: 'medium',
+  size: 'normal',
   theme: 'default',
   variant: 'base',
   shape: 'round',

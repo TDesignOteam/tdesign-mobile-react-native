@@ -27,7 +27,7 @@ export type TDButtonProps = PropsWithChildren<{
   iconDirection?: 'row' | 'column';
   /**
    * 组件尺寸
-   * @default medium
+   * @default normal
    */
   size?: SizeEnum;
   /**

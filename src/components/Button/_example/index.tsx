@@ -54,7 +54,7 @@ const Demo = () => (
       <CodeSpace>
         <View className="flexRow flexWrap gapX12">
           <Button style={{ flex: 1 }} size="large" content={'大'} />
-          <Button style={{ flex: 1 }} size="medium" content={'中'} />
+          <Button style={{ flex: 1 }} size="normal" content={'中'} />
           <Button style={{ flex: 1 }} size="small" content={'小'} />
         </View>
       </CodeSpace>

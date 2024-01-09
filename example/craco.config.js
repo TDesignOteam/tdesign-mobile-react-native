@@ -27,19 +27,20 @@ const entryFile = process.env.ENTRY || 'index.web.js';
 
 module.exports = {
   babel: {
-    presets: [['module:metro-react-native-babel-preset', { useTransformReactJSXExperimental: true }]],
+    presets: [
+      '@babel/preset-typescript',
+      ['module:metro-react-native-babel-preset', { useTransformReactJSXExperimental: true }],
+    ],
     plugins: [
       // https://necolas.github.io/react-native-web/docs/setup/#package-optimization
       ['react-native-web'],
       ['react-native-reanimated/plugin'],
+      ['@babel/plugin-transform-flow-strip-types', { allowDeclareFields: true }],
       [
         // Enable new JSX Transform from React
         '@babel/plugin-transform-react-jsx',
-        {
-          runtime: 'automatic',
-        },
+        { runtime: 'automatic' },
       ],
-      ['@babel/plugin-transform-typescript', { allowDeclareFields: true }],
       ['@babel/plugin-proposal-private-methods', { loose: true }],
       ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
     ],

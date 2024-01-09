@@ -1,8 +1,9 @@
 import React, { Component, ReactElement, PropsWithChildren } from 'react';
-import { Keyboard, View, StyleSheet, Dimensions, ViewStyle, TouchableWithoutFeedback } from 'react-native';
+import { Keyboard, StyleSheet, Dimensions, ViewStyle, TouchableWithoutFeedback } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Easing } from 'react-native-reanimated';
 import { isEmpty } from 'lodash';
+import { View } from '../Base';
 import { isWeb } from '../../_utils/constants';
 import { ThemeType, ThemeContext } from '../../theme';
 import { PopupConfig, PopupItemConfig } from './types';

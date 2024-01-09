@@ -5,8 +5,12 @@
  * isComponent: true
  * toc: false
  */
-import { View, Button, Popup, PlacementProps, Text } from 'tdesign-react-native/components';
-import { Section, CodeSpace, H3 } from '@src/../example/src/components';
+import { View, Button, Popup, PlacementProps, Text, PopupContainer } from 'tdesign-react-native/components';
+import { Section, CodeSpace, H3, P, CodeSpaceOnlyDoc } from '@src/../example/src/components';
+
+const UsageDemo = () => {
+  return <PopupContainer>{/* {<App />} */}</PopupContainer>;
+};
 
 const BaseDemo = () => {
   const onPress = (placement: PlacementProps = 'center') => {
@@ -102,6 +106,12 @@ const CustomDemo2 = () => {
 const Demo = () => {
   return (
     <>
+      <Section>
+        <P>使用popup前需要引入使用PopupContainer容器包裹应用</P>
+        <CodeSpaceOnlyDoc>
+          <UsageDemo />
+        </CodeSpaceOnlyDoc>
+      </Section>
       <Section>
         <H3>1.弹出方向</H3>
         <CodeSpace>
