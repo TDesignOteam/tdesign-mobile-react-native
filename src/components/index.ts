@@ -1,4 +1,3 @@
-// export * from './AnimationView';
 export * from './Base';
 export * from './Button';
 export * from './Touchable';
@@ -11,3 +10,4 @@ export * from './Popup';
 export * from './Message';
 export * from './Loading';
 export * from './Toast';
+export * from './Dialog';

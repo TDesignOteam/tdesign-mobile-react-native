@@ -57,6 +57,10 @@
       "title": "消息提醒",
       "children": [
         {
+          "title": "Dialog 对话框",
+          "key": "Dialog"
+        },
+        {
           "title": "Loading 加载中",
           "key": "Loading"
         },
