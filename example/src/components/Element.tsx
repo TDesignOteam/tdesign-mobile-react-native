@@ -28,5 +28,5 @@ export const H5 = (props: PropsWithChildren<any>) => {
 
 export const P = (props: PropsWithChildren<any>) => {
   const { children } = props;
-  return <Text>{children}</Text>;
+  return <Text className="mt4">{children}</Text>;
 };
