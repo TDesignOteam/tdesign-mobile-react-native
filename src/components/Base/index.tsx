@@ -9,12 +9,15 @@ import {
   TextProps,
   TextInputProps,
   ImageProps,
+  ViewStyle,
+  ImageStyle,
+  TextStyle,
 } from 'react-native';
 import WrapperComponent from './WrapperComponent';
 
-export const View = WrapperComponent<ViewProps>(RnView);
-export const ScrollView = WrapperComponent<ScrollViewProps>(RnScrollView);
-export const Image = WrapperComponent<ImageProps>(RnImage);
-export const Text = WrapperComponent<TextProps>(RnText);
-export const TextInput = WrapperComponent<TextInputProps>(RnTextInput);
+export const View = WrapperComponent<ViewProps, ViewStyle>(RnView);
+export const ScrollView = WrapperComponent<ScrollViewProps, ViewStyle>(RnScrollView);
+export const Image = WrapperComponent<ImageProps, ImageStyle>(RnImage);
+export const Text = WrapperComponent<TextProps, TextStyle>(RnText);
+export const TextInput = WrapperComponent<TextInputProps, TextStyle>(RnTextInput);
 export { WrapperComponent };
