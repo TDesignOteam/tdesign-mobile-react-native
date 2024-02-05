@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { isString } from 'lodash';
-import { Image, Text } from '../Base';
+import { Text } from '../Base';
+import { Image } from '../Image';
 import { useTheme, ThemeType } from '../../theme';
-import type { AvatarProps, AvatarShape } from './types';
-import { SizeEnum } from '../common';
+import type { AvatarProps } from './types';
+import { SizeEnum, ShapeEnum } from '../common';
 
 export const AVATAR_SIZE_MAP = {
   small: 32,
@@ -18,7 +19,7 @@ export const AVATAR_ICON_SIZE_MAP = {
   large: 32,
 };
 
-const createStyles = (theme: ThemeType, size: SizeEnum, shape: AvatarShape) => {
+const createStyles = (theme: ThemeType, size: SizeEnum, shape: ShapeEnum) => {
   const height = AVATAR_SIZE_MAP[size];
   const width = AVATAR_SIZE_MAP[size];
   const textSize = AVATAR_ICON_SIZE_MAP[size];
@@ -59,8 +60,7 @@ export const Avatar: React.FunctionComponent<AvatarProps> = (props) => {
         <Image
           source={{ uri: url }}
           style={styles.image}
-          // errorIcon={defaultUserIcon}
-          // backgroundColor={theme.colors.brand2}
+          backgroundColor={theme.colors.brand2}
           onError={(e) => onError?.(e)}
           onLoad={(e) => onLoad?.(e)}
         />
@@ -76,7 +76,7 @@ export const Avatar: React.FunctionComponent<AvatarProps> = (props) => {
     }
 
     return children;
-  }, [children, icon, onError, onLoad, style, styles.avatar, styles.image, url]);
+  }, [children, icon, onError, onLoad, style, styles.avatar, styles.image, theme.colors.brand2, url]);
 
   return <View style={[styles.avatar, style]}>{avatarElement}</View>;
 };

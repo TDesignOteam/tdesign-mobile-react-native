@@ -1,11 +1,6 @@
 import type { ImageErrorEventData, ImageLoadEventData, NativeSyntheticEvent, ViewStyle } from 'react-native';
 import { PropsWithChildren, ReactElement } from 'react';
-import { SizeEnum } from '../common';
-
-/**
- * 形状
- */
-export type AvatarShape = 'circle' | 'round' | 'square';
+import { SizeEnum, ShapeEnum } from '../common';
 
 type CascadingValue = 'left-up' | 'right-up';
 
@@ -31,7 +26,7 @@ export type AvatarProps = PropsWithChildren<{
    * 形状
    * @default: circle
    */
-  shape?: AvatarShape;
+  shape?: ShapeEnum;
   /**
    * 图片加载失败时触发
    */
