@@ -94,7 +94,7 @@ export default function mdToReact(options) {
                 <div style={isShow('demo')} name="DEMO">
                   ${mdSegment.demoMd.replace(/class=/g, 'className=')}
 
-                  <td-doc-phone ref={tdDocPhone}>
+                  <td-doc-phone ref={tdDocPhone} style={{position: 'relative', zIndex: 999}}>
                     <iframe src="${
                       mdSegment.mobileUrl
                     }" frameBorder="0" width="100%" height="100%" style={{ borderRadius: '0 0 6px 6px' }}></iframe>

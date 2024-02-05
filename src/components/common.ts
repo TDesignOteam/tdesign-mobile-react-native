@@ -6,6 +6,8 @@ export type SizeEnum = 'small' | 'normal' | 'large';
 
 export type LayoutEnum = 'horizontal' | 'vertical';
 
+export type ShapeEnum = 'circle' | 'round' | 'square';
+
 export type ContainerStyle = {
   /**
    * 容器样式

@@ -34,7 +34,7 @@ function ExampleList() {
                   return (
                     <ListItem
                       key={childIndex}
-                      hideBorder={index === endIndex}
+                      hideBorder={childIndex === endIndex}
                       label={child.title}
                       onPressItem={() => {
                         navigation.navigate(child.key as never);

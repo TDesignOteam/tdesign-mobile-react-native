@@ -1,14 +1,15 @@
 import * as React from 'react';
+import { StyleProp } from 'react-native';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import { useTheme, ThemeType } from '../../theme';
 
-interface WrapperProps<T> {
+interface WrapperProps<S> {
   className?: string;
   skeleton?: React.ReactElement;
-  style?: T;
+  style?: StyleProp<S>;
 }
 
-const CreateWrapperComponent = <P extends object>(Component: React.ComponentType<P>) => {
+const CreateWrapperComponent = <P extends object, S>(Component: React.ComponentType<P>) => {
   const parseClassName = (className: string, theme: ThemeType) => {
     const atomClassNames = [...Object.keys(theme.classnames || {})];
     const colorClassNames = [...Object.keys(theme.colors || {})];
@@ -30,7 +31,7 @@ const CreateWrapperComponent = <P extends object>(Component: React.ComponentType
     return classnames;
   };
 
-  const WrapperComponent = React.forwardRef<unknown, P & React.PropsWithChildren<WrapperProps<P>>>((props, ref) => {
+  const WrapperComponent = React.forwardRef<unknown, P & React.PropsWithChildren<WrapperProps<S>>>((props, ref) => {
     const { theme } = useTheme();
     let { children } = props;
     const { className = '', style, ...others } = props;
