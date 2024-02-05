@@ -5,7 +5,7 @@ import { SizeEnum } from '../common';
 /**
  * 形状
  */
-export type AvatarShape = 'circle' | 'round';
+export type AvatarShape = 'circle' | 'round' | 'square';
 
 type CascadingValue = 'left-up' | 'right-up';
 

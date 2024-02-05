@@ -45,6 +45,7 @@ const Demo = () => {
           <View className="flexRow gapX10">
             <Avatar url={'https://tdesign.gtimg.com/mobile/demos/avatar1.png'} />
             <Avatar shape="round" url={'https://tdesign.gtimg.com/mobile/demos/avatar1.png'} />
+            <Avatar shape="square" url={'https://tdesign.gtimg.com/mobile/demos/avatar1.png'} />
           </View>
         </CodeSpace>
         <P>图标头像</P>
@@ -52,6 +53,7 @@ const Demo = () => {
           <View className="flexRow gapX10">
             <Avatar icon={<UserIcon />} />
             <Avatar shape="round" icon={<UserIcon />} />
+            <Avatar shape="square" icon={<UserIcon />} />
           </View>
         </CodeSpace>
         <P>字符头像</P>
@@ -59,6 +61,7 @@ const Demo = () => {
           <View className="flexRow gapX10">
             <Avatar>A</Avatar>
             <Avatar shape="round">A</Avatar>
+            <Avatar shape="square">A</Avatar>
           </View>
         </CodeSpace>
       </Section>

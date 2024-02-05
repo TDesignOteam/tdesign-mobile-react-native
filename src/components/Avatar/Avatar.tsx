@@ -22,12 +22,17 @@ const createStyles = (theme: ThemeType, size: SizeEnum, shape: AvatarShape) => {
   const height = AVATAR_SIZE_MAP[size];
   const width = AVATAR_SIZE_MAP[size];
   const textSize = AVATAR_ICON_SIZE_MAP[size];
+  const radius = {
+    circle: theme.spacers.spacer999,
+    round: theme.spacers.spacer4,
+    square: theme.spacers.spacer0,
+  };
 
   return StyleSheet.create({
     avatar: {
       height,
       width,
-      borderRadius: shape === 'circle' ? 999 : 4,
+      borderRadius: radius[shape],
       overflow: 'hidden',
       display: 'flex',
       alignItems: 'center',
