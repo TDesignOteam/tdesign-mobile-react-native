@@ -17,7 +17,7 @@ import WrapperComponent from './WrapperComponent';
 
 export const View = WrapperComponent<ViewProps, ViewStyle>(RnView);
 export const ScrollView = WrapperComponent<ScrollViewProps, ViewStyle>(RnScrollView);
-export const Image = WrapperComponent<ImageProps, ImageStyle>(RnImage);
+export const BaseImage = WrapperComponent<ImageProps, ImageStyle>(RnImage);
 export const Text = WrapperComponent<TextProps, TextStyle>(RnText);
 export const TextInput = WrapperComponent<TextInputProps, TextStyle>(RnTextInput);
 export { WrapperComponent };

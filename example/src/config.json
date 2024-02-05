@@ -52,6 +52,10 @@
           "key": "Highlight"
         },
         {
+          "title": "Image 图片",
+          "key": "Image"
+        },
+        {
           "title": "Tag 标签",
           "key": "Tag"
         }
