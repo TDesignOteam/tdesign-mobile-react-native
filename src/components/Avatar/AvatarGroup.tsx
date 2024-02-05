@@ -50,7 +50,6 @@ export const AvatarGroup: React.FunctionComponent<AvatarGroupProps> = (props) =>
     const result: ReactNode[] = [];
     childrens?.forEach((child, index) => {
       if (React.isValidElement(child)) {
-        console.log(childrens.length - index);
         const cloneChild = cloneElement(child, {
           ...child.props,
           style: [
