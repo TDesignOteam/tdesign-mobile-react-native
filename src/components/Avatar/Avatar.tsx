@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Image } from '../Base';
+import { isString } from 'lodash';
+import { Image, Text } from '../Base';
 import { useTheme, ThemeType } from '../../theme';
 import type { AvatarProps, AvatarShape } from './types';
 import { SizeEnum } from '../common';
@@ -65,8 +66,12 @@ export const Avatar: React.FunctionComponent<AvatarProps> = (props) => {
       return icon;
     }
 
+    if (isString(children)) {
+      return <Text style={[styles.avatar, style]}>{children}</Text>;
+    }
+
     return children;
-  }, [children, icon, onError, onLoad, styles.image, url]);
+  }, [children, icon, onError, onLoad, style, styles.avatar, styles.image, url]);
 
   return <View style={[styles.avatar, style]}>{avatarElement}</View>;
 };
