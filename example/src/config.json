@@ -56,6 +56,10 @@
           "key": "Image"
         },
         {
+          "title": "SwipeCell 滑动单元格",
+          "key": "SwipeCell"
+        },
+        {
           "title": "Tag 标签",
           "key": "Tag"
         }

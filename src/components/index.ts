@@ -14,3 +14,4 @@ export * from './Dialog';
 export * from './Avatar';
 export * from './Image';
 export * from './ActionSheet';
+export * from './SwipeCell';
